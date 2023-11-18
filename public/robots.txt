@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://Khuanany.com.mx/sitemap.xml
