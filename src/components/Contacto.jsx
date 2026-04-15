@@ -13,7 +13,7 @@ export default function Contacto() {
   }
 
   return (
-    <section id="contacto" className="py-32 bg-[#00140a]">
+    <section id="contacto" className="py-32 bg-deep-black">
       <div className="max-w-5xl mx-auto px-8">
         <div className="grid lg:grid-cols-5 gap-16 items-center">
           <div className="lg:col-span-2">
@@ -21,13 +21,13 @@ export default function Contacto() {
             <p className="text-gray-400 font-light mb-10 leading-relaxed">
               Estamos listos para transformar sus ideas en una realidad digital de prestigio. Nuestro equipo de consultores le contactará en menos de 24 horas.
             </p>
-            <div className="space-y-4 text-[#D4AF37] text-sm font-medium tracking-wide">
-              <p className="flex items-center"><span className="w-8 h-[1px] bg-[#D4AF37] mr-4"></span> concierge@khuanany.com</p>
-              <p className="flex items-center"><span className="w-8 h-[1px] bg-[#D4AF37] mr-4"></span> +52 55 1234 5678</p>
+            <div className="space-y-4 text-gold text-sm font-medium tracking-wide">
+              <p className="flex items-center"><span className="w-8 h-px bg-gold mr-4"></span> concierge@khuanany.com</p>
+              <p className="flex items-center"><span className="w-8 h-px bg-gold mr-4"></span> +52 55 1234 5678</p>
             </div>
           </div>
           <div className="lg:col-span-3">
-            <div className="deco-border bg-[#002d1a]/40 p-10">
+              <div className="deco-border bg-form-dark/40 p-10">
               <form className="space-y-8" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
@@ -37,7 +37,7 @@ export default function Contacto() {
                       placeholder="NOMBRE COMPLETO"
                       value={formData.nombre}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 px-0 focus:border-[#D4AF37] outline-none transition text-xs tracking-[0.2em] font-medium placeholder:text-[#D4AF37]/40 text-white"
+                      className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white"
                     />
                   </div>
                   <div>
@@ -47,7 +47,7 @@ export default function Contacto() {
                       placeholder="EMAIL CORPORATIVO"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 px-0 focus:border-[#D4AF37] outline-none transition text-xs tracking-[0.2em] font-medium placeholder:text-[#D4AF37]/40 text-white"
+                      className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white"
                     />
                   </div>
                 </div>
@@ -58,7 +58,7 @@ export default function Contacto() {
                     placeholder="DESCRIBA SU PROYECTO"
                     value={formData.proyecto}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 px-0 focus:border-[#D4AF37] outline-none transition text-xs tracking-[0.2em] font-medium placeholder:text-[#D4AF37]/40 text-white resize-none"
+                    className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white resize-none"
                   ></textarea>
                 </div>
                 <div className="pt-4">

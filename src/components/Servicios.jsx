@@ -32,22 +32,22 @@ const services = [
 
 export default function Servicios() {
   return (
-    <section id="servicios" className="py-32 bg-[#001a0d]">
+    <section id="servicios" className="py-32 bg-deep-black">
       <div className="max-w-7xl mx-auto px-8">
         <div className="text-center mb-24">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">Nuestra <span className="gold-gradient">Experticia</span></h2>
-          <p className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold">Soluciones Digitales de Alto Nivel</p>
-          <div className="w-32 h-[1px] bg-[#D4AF37]/50 mx-auto mt-8"></div>
+          <p className="text-gold uppercase tracking-deco-md text-2xs font-bold">Soluciones Digitales de Alto Nivel</p>
+          <div className="w-32 h-px bg-gold/50 mx-auto mt-8"></div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-10">
           {services.map((service, index) => (
             <div key={index} className="service-card transition-transform duration-500 hover:-translate-y-2">
               <div className="deco-border h-full flex flex-col items-center text-center">
-                <div className="mb-8 text-[#D4AF37]">
+                <div className="mb-8 text-gold">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-[#D4AF37] tracking-widest">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-gold tracking-widest">{service.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed font-light">{service.description}</p>
               </div>
             </div>
