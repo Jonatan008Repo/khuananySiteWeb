@@ -1,17 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Contacto() {
-  const [formData, setFormData] = useState({ nombre: '', email: '', proyecto: '' })
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-  }
-
   return (
     <section id="contacto" className="py-32 bg-deep-black">
       <div className="max-w-5xl mx-auto px-8">
@@ -22,49 +11,12 @@ export default function Contacto() {
               Estamos listos para transformar sus ideas en una realidad digital de prestigio. Nuestro equipo de consultores le contactará en menos de 24 horas.
             </p>
             <div className="space-y-4 text-gold text-sm font-medium tracking-wide">
-              <p className="flex items-center"><span className="w-8 h-px bg-gold mr-4"></span> concierge@khuanany.com</p>
-              <p className="flex items-center"><span className="w-8 h-px bg-gold mr-4"></span> +52 55 1234 5678</p>
-            </div>
-          </div>
-          <div className="lg:col-span-3">
-              <div className="deco-border bg-form-dark/40 p-10">
-              <form className="space-y-8" onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <input
-                      type="text"
-                      name="nombre"
-                      placeholder="NOMBRE COMPLETO"
-                      value={formData.nombre}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="EMAIL CORPORATIVO"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <textarea
-                    rows={3}
-                    name="proyecto"
-                    placeholder="DESCRIBA SU PROYECTO"
-                    value={formData.proyecto}
-                    onChange={handleChange}
-                    className="w-full bg-transparent border-b border-gold/30 py-3 px-0 focus:border-gold outline-none transition text-xs tracking-deco-xs font-medium placeholder:text-gold/40 text-white resize-none"
-                  ></textarea>
-                </div>
-                <div className="pt-4">
-                  <button type="submit" className="btn-deco w-full">ENVIAR CONSULTA</button>
-                </div>
-              </form>
+              <p className="flex items-center">
+                <span className="w-8 h-px bg-gold mr-4"></span>
+                <a href="mailto:concierge@khuanany.com" className="hover:text-soft-gold transition">
+                  jonatan-008@outlook.com
+                </a>
+              </p>
             </div>
           </div>
         </div>
