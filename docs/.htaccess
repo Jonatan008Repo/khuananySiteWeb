@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://Khuanany.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://www.khuanany.com/$1 [R=301,L]
 
 ErrorDocument 401 /index.html
 ErrorDocument 403 /index.html
