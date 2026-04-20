@@ -134,3 +134,7 @@ p, a, span, label, input, textarea, button {
 .service-card:hover .deco-border {
   background: rgba(212, 175, 55, 0.08);
 }
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
