@@ -255,3 +255,6 @@ CLAUDE.md
 
 # GitHub
 .github/
+# Lienzo de diseño publicado (duplica design/*.dc.html, 2.5 MB)
+design/rediseno-khuanany.html
+.env.production

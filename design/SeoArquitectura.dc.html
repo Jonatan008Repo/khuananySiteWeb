@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <style>
+    body {
+      margin: 0;
+      background: #F7F4EC;
+      color: #0d2430;
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #0a4b5d; text-decoration: underline; }
+    a:hover { color: #96731e; }
+    h1, h2, h3 { margin: 0; font-family: 'Playfair Display', 'Times New Roman', serif; }
+    p { margin: 0; text-wrap: pretty; }
+  </style>
+</helmet>
+
+<div style="width: 1000px; background: #F7F4EC; padding: 64px 72px 72px; box-sizing: border-box">
+
+  <!-- Cabecera -->
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; border-bottom: 2px solid #0a4b5d; padding-bottom: 26px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #96731e">Khuanany · capa de visibilidad</div>
+      <h1 style="font-size: 44px; line-height: 1.08; font-weight: 700; color: #0a4b5d; text-transform: uppercase; letter-spacing: 1px">SEO · AEO · GEO</h1>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 5px; text-align: right">
+      <div style="font-size: 12px; color: #4a6169">www.khuanany.com</div>
+      <div style="font-size: 12px; color: #4a6169">React 18 · Vite 5 · SPA</div>
+    </div>
+  </div>
+
+  <p style="font-size: 16.5px; line-height: 1.78; color: #2b444e; max-width: 760px; padding-top: 28px">
+    Tres capas distintas sobre la misma página. El <strong>SEO</strong> hace que Google encuentre e indexe el sitio; el <strong>AEO</strong> hace que un buscador de respuestas extraiga un fragmento correcto sin que el usuario entre; el <strong>GEO</strong> hace que un modelo generativo describa a Khuanany con hechos verificables cuando alguien le pregunta por un estudio web.
+  </p>
+
+  <!-- Tres capas -->
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 36px">
+    <div style="border-top: 3px solid #0a4b5d; padding-top: 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #0a4b5d">SEO</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #0d2430; line-height: 1.3">Indexación y rastreo</div>
+      <p style="font-size: 14.5px; line-height: 1.68; color: #41585f">Title y meta description por ruta, canonical, Open Graph y Twitter Card, <code style="font-family: ui-monospace, monospace; font-size: 13px">robots.txt</code> y <code style="font-family: ui-monospace, monospace; font-size: 13px">sitemap.xml</code> versionados, jerarquía de encabezados con un solo H1, imágenes con <code style="font-family: ui-monospace, monospace; font-size: 13px">alt</code> descriptivo y <code style="font-family: ui-monospace, monospace; font-size: 13px">lang="es"</code>.</p>
+    </div>
+    <div style="border-top: 3px solid #96731e; padding-top: 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #96731e">AEO</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #0d2430; line-height: 1.3">Respuestas extraíbles</div>
+      <p style="font-size: 14.5px; line-height: 1.68; color: #41585f">Sección «Respuestas» con seis preguntas reales, cada una en un H3 y respondida en la primera frase. Marcado <code style="font-family: ui-monospace, monospace; font-size: 13px">FAQPage</code> y <code style="font-family: ui-monospace, monospace; font-size: 13px">BreadcrumbList</code> para que el fragmento salga completo y atribuido.</p>
+    </div>
+    <div style="border-top: 3px solid #3d6b4a; padding-top: 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3d6b4a">GEO</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #0d2430; line-height: 1.3">Entidad citable</div>
+      <p style="font-size: 14.5px; line-height: 1.68; color: #41585f">Bloque «Khuanany en breve»: definición en una frase más ficha de hechos (fundación, sede, servicios, stack, idiomas, contacto). Es el párrafo que un modelo copia, y coincide literalmente con el JSON-LD de <code style="font-family: ui-monospace, monospace; font-size: 13px">Organization</code>.</p>
+    </div>
+  </div>
+
+  <!-- Jerarquía -->
+  <div style="padding-top: 46px">
+    <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 20px">
+      <h2 style="font-size: 13px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #0a4b5d; font-family: 'Montserrat', sans-serif">Jerarquía de encabezados — página de inicio</h2>
+      <div style="height: 1px; background: rgba(10,75,93,0.25); flex-grow: 1"></div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid rgba(10,75,93,0.16); padding: 26px 30px; display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; color: #2b444e">
+      <div style="display: flex; gap: 14px"><span style="font-weight: 700; color: #96731e; width: 28px; flex-shrink: 0">H1</span><span>Desarrollo web de lujo para marcas excepcionales <span style="color: #7b8f95">— uno solo en toda la página</span></span></div>
+      <div style="display: flex; gap: 14px; padding-left: 26px"><span style="font-weight: 700; color: #0a4b5d; width: 28px; flex-shrink: 0">H2</span><span>Khuanany en breve <span style="color: #7b8f95">— entidad (GEO)</span></span></div>
+      <div style="display: flex; gap: 14px; padding-left: 26px"><span style="font-weight: 700; color: #0a4b5d; width: 28px; flex-shrink: 0">H2</span><span>Tres servicios, sin relleno</span></div>
+      <div style="display: flex; gap: 14px; padding-left: 52px"><span style="font-weight: 700; color: #4a6169; width: 28px; flex-shrink: 0">H3</span><span>Ecosistemas web · UI/UX de autor · Seguridad y velocidad</span></div>
+      <div style="display: flex; gap: 14px; padding-left: 26px"><span style="font-weight: 700; color: #0a4b5d; width: 28px; flex-shrink: 0">H2</span><span>Obra digital</span></div>
+      <div style="display: flex; gap: 14px; padding-left: 52px"><span style="font-weight: 700; color: #4a6169; width: 28px; flex-shrink: 0">H3</span><span>The Heritage Club · Vanguard Mobile AI</span></div>
+      <div style="display: flex; gap: 14px; padding-left: 26px"><span style="font-weight: 700; color: #0a4b5d; width: 28px; flex-shrink: 0">H2</span><span>Preguntas frecuentes <span style="color: #7b8f95">— AEO</span></span></div>
+      <div style="display: flex; gap: 14px; padding-left: 52px"><span style="font-weight: 700; color: #4a6169; width: 28px; flex-shrink: 0">H3</span><span>Una por pregunta, seis en total</span></div>
+      <div style="display: flex; gap: 14px; padding-left: 26px"><span style="font-weight: 700; color: #0a4b5d; width: 28px; flex-shrink: 0">H2</span><span>Hablemos de su visión</span></div>
+    </div>
+  </div>
+
+  <!-- Implementación -->
+  <div style="padding-top: 46px">
+    <div style="display: flex; align-items: center; gap: 14px; padding-bottom: 20px">
+      <h2 style="font-size: 13px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #0a4b5d; font-family: 'Montserrat', sans-serif">Qué se toca en el repositorio</h2>
+      <div style="height: 1px; background: rgba(10,75,93,0.25); flex-grow: 1"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 0; font-size: 14.5px">
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">index.html</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6">Title y description por defecto, canonical, Open Graph, Twitter Card, <code style="font-family: ui-monospace, monospace; font-size: 13px">theme-color</code> y JSON-LD base de Organization y WebSite.</div>
+
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">src/seo/Seo.jsx</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6">Componente nuevo que fija title, description, canonical y JSON-LD por ruta sin dependencias externas.</div>
+
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">src/seo/schemas.js</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6">Organization, WebSite, ProfessionalService, Service ×3, FAQPage, BreadcrumbList — una sola fuente de verdad para los hechos de la entidad.</div>
+
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">src/components/Faq.jsx</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6">Sección «Respuestas» nueva, con las seis preguntas del diseño y su marcado FAQPage sincronizado.</div>
+
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">public/robots.txt<br>public/sitemap.xml</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6"><strong>Corrección:</strong> hoy solo existen dentro de <code style="font-family: ui-monospace, monospace; font-size: 13px">dist/</code> y <code style="font-family: ui-monospace, monospace; font-size: 13px">docs/</code>, así que cada <code style="font-family: ui-monospace, monospace; font-size: 13px">npm run build</code> los borra. Pasan a <code style="font-family: ui-monospace, monospace; font-size: 13px">public/</code>, que Vite copia al empaquetar.</div>
+
+      <div style="padding: 15px 18px 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); font-family: ui-monospace, monospace; font-size: 13.5px; color: #96731e; font-weight: 600">Componentes de sección</div>
+      <div style="padding: 15px 0; border-bottom: 1px solid rgba(10,75,93,0.14); color: #2b444e; line-height: 1.6">Un único H1 en Hero, H2 por sección, <code style="font-family: ui-monospace, monospace; font-size: 13px">alt</code> descriptivo en cada imagen y etiquetas semánticas en lugar de <code style="font-family: ui-monospace, monospace; font-size: 13px">div</code> genéricos.</div>
+    </div>
+  </div>
+
+  <!-- Límite honesto -->
+  <div style="margin-top: 44px; border: 1px solid rgba(150,115,30,0.45); background: #FBF6E6; padding: 26px 30px; display: flex; flex-direction: column; gap: 12px">
+    <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #96731e">El límite que conviene conocer</div>
+    <p style="font-size: 15px; line-height: 1.72; color: #3a2f16">
+      El sitio es una SPA de Vite: el HTML que llega al rastreador viene casi vacío y el contenido lo pinta React. Google lo renderiza, pero muchos rastreadores de motores de respuesta y modelos generativos <strong>no ejecutan JavaScript</strong>. El JSON-LD de <code style="font-family: ui-monospace, monospace; font-size: 13px">index.html</code> y las etiquetas estáticas cubren lo esencial; para que el texto completo sea legible sin JS hace falta prerenderizado (<code style="font-family: ui-monospace, monospace; font-size: 13px">vite-plugin-ssg</code> o migrar a Next.js). Es una decisión aparte, no incluida en este trabajo.
+    </p>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: center; gap: 12px; padding-top: 40px">
+    <div style="width: 60px; height: 1px; background: rgba(10,75,93,0.3)"></div>
+    <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l6 6-6 6L0 6z" fill="#96731e"/></svg>
+    <div style="width: 60px; height: 1px; background: rgba(10,75,93,0.3)"></div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

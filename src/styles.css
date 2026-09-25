@@ -4,6 +4,11 @@
   --soft-gold: #f1e5ac;
   --dark-green: #0a4b5d;
   --deep-black: #011E2E;
+  --ocean: #04303f;
+  --ocean-light: #0d5d70;
+  --ivory: #F4F1E8;
+  --mist: #A9BEC4;
+  --mist-light: #C4D3D8;
 }
 
 body {
@@ -22,7 +27,7 @@ h1, h2, h3, .deco-font {
   font-weight: 700;
 }
 
-p, a, span, label, input, textarea, button {
+p, a, label, input, textarea, button {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -30,7 +35,6 @@ p, a, span, label, input, textarea, button {
   border: 2px solid var(--gold);
   position: relative;
   padding: 1.5rem;
-  background: var(--racing-geen);
 }
 
 .deco-border::before {

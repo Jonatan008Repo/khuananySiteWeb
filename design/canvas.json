@@ -1,0 +1,31 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 6200, "title": "Inicio — escritorio 1440" },
+    { "file": "Movil.dc.html", "x": 1600, "y": 0, "w": 390, "h": 3100, "title": "Inicio — móvil 390" },
+    { "file": "SeoArquitectura.dc.html", "x": 2130, "y": 0, "w": 1000, "h": 2150, "title": "Capa SEO · AEO · GEO", "print": "flow" }
+  ],
+  "annotations": [
+    {
+      "id": "nota-rediseno",
+      "x": 0,
+      "y": -210,
+      "w": 620,
+      "text": "Rediseño de la página de inicio sobre el sistema visual actual: racing green #0a4b5d, oro #D4AF37, deep black #011E2E, Playfair Display en display y Montserrat 300 en cuerpo.\nDos secciones nuevas que el SEO/AEO/GEO exige: «Khuanany en breve» (entidad) y «Preguntas frecuentes» (respuestas)."
+    },
+    {
+      "id": "nota-movil",
+      "x": 1600,
+      "y": -210,
+      "w": 390,
+      "text": "Móvil 390 px. Todos los objetivos táctiles a 52 px de alto; el acordeón de FAQ aparece cerrado."
+    },
+    {
+      "id": "nota-seo",
+      "x": 2130,
+      "y": -210,
+      "w": 620,
+      "text": "Ficha de la capa técnica: qué es cada una de las tres siglas, la jerarquía de encabezados y los archivos que se tocan en el repositorio. Incluye el límite real de una SPA sin prerenderizado."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}
