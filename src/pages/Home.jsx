@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Hero from '../components/Hero'
+import EnBreve from '../components/EnBreve'
 import Servicios from '../components/Servicios'
+import Tarifas from '../components/Tarifas'
 import Portafolio from '../components/Portafolio'
+import Faq from '../components/Faq'
 import Contacto from '../components/Contacto'
 
 export default function Home() {
@@ -32,8 +35,13 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <div className="rule-chevron" aria-hidden="true" />
+      <EnBreve />
       <Servicios />
+      <Tarifas />
       <Portafolio />
+      <div className="rule-chevron" aria-hidden="true" />
+      <Faq />
       <Contacto />
     </>
   )

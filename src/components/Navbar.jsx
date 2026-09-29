@@ -1,82 +1,99 @@
-import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { cta, nav, studio } from '../data/site'
+import { scrollToSection } from '../utils/scrollToSection'
+import Button from './ui/Button'
 
 export default function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const handleClick = (e, id) => {
+  useEffect(() => {
+    if (!isMenuOpen) return undefined
+    const onKey = (e) => e.key === 'Escape' && setIsMenuOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [isMenuOpen])
+
+  const goTo = (e, id) => {
     e.preventDefault()
-    setIsMobileMenuOpen(false)
-
-    if (location.pathname !== '/') {
-      navigate('/')
-      setTimeout(() => {
-        const target = document.querySelector(id)
-        if (target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' })
-        }
-      }, 100)
-    } else {
-      const target = document.querySelector(id)
-      if (target) {
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' })
-      }
+    setIsMenuOpen(false)
+    if (location.pathname === '/') {
+      scrollToSection(id)
+      return
     }
+    navigate('/')
+    setTimeout(() => scrollToSection(id), 100)
   }
 
-  const handleLogo = (e) => {
+  const goHome = (e) => {
     e.preventDefault()
-    setIsMobileMenuOpen(false)
-    if (location.pathname !== '/') {
-      navigate('/')
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    setIsMenuOpen(false)
+    if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' })
+    else navigate('/')
   }
+
+  const linkClass =
+    'text-soft-gold hover:text-gold transition-colors text-2xs font-semibold uppercase tracking-[0.22em] xl:tracking-deco-sm'
 
   return (
-    <nav className="fixed w-full z-50 bg-racing-green/95 backdrop-blur-lg border-b border-gold/20">
-      <div className="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-        <button onClick={handleLogo} className="text-3xl font-bold gold-gradient deco-font tracking-tighter cursor-pointer hover:opacity-80 transition">KHUANANY</button>
-        <div className="hidden md:flex space-x-10 uppercase text-2xs tracking-deco-sm">
-          <a href="#inicio" className="nav-link" onClick={(e) => handleClick(e, '#inicio')}>Inicio</a>
-          <a href="#servicios" className="nav-link" onClick={(e) => handleClick(e, '#servicios')}>Servicios</a>
-          <a href="#portafolio" className="nav-link" onClick={(e) => handleClick(e, '#portafolio')}>Portafolio</a>
-          <a href="#contacto" className="nav-link" onClick={(e) => handleClick(e, '#contacto')}>Contacto</a>
+    <header className="fixed top-0 inset-x-0 z-50 bg-racing-green/95 backdrop-blur-lg border-b border-gold/30">
+      <nav aria-label="Principal" className="max-w-7xl mx-auto h-16 lg:h-nav px-5 lg:px-16 flex items-center justify-between gap-6">
+        <a href="/" onClick={goHome} className="group">
+          <span className="font-display font-bold text-[19px] lg:text-[26px] tracking-[4px] lg:tracking-[6px] uppercase text-gold group-hover:text-soft-gold transition-colors">
+            {studio.name}
+          </span>
+        </a>
+
+        <div className="hidden lg:flex items-center gap-7 xl:gap-10">
+          <ul className="flex items-center gap-6 xl:gap-8">
+            {nav.map((item) => (
+              <li key={item.id}>
+                <a href={`/#${item.id}`} onClick={(e) => goTo(e, item.id)} className={`nav-link ${linkClass}`}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Button variant="ghost" size="sm" href="/#contacto" onClick={(e) => goTo(e, 'contacto')} className="px-7 py-3">
+            {cta.auditShort}
+          </Button>
         </div>
+
         <button
-          className="md:hidden text-gold"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-          aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
           type="button"
+          className="lg:hidden w-[46px] h-[46px] flex items-center justify-center border border-gold/40 text-gold"
+          onClick={() => setIsMenuOpen((open) => !open)}
+          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
         >
-          {isMobileMenuOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          )}
+          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            {isMenuOpen ? <path d="M3 0l14 14M17 0L3 14" /> : <path d="M0 1h20M0 7h20M0 13h20" />}
+          </svg>
         </button>
-      </div>
+      </nav>
 
       <div
         id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-[420px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}
       >
-        <div className="px-8 pb-6 pt-2 flex flex-col gap-4 uppercase text-xs tracking-widest">
-          <a href="#inicio" className="nav-link" onClick={(e) => handleClick(e, '#inicio')}>Inicio</a>
-          <a href="#servicios" className="nav-link" onClick={(e) => handleClick(e, '#servicios')}>Servicios</a>
-          <a href="#portafolio" className="nav-link" onClick={(e) => handleClick(e, '#portafolio')}>Portafolio</a>
-          <a href="#contacto" className="nav-link" onClick={(e) => handleClick(e, '#contacto')}>Contacto</a>
-        </div>
+        <ul className="px-5 pb-6 pt-1 flex flex-col">
+          {nav.map((item) => (
+            <li key={item.id} className="border-t border-gold/15">
+              <a href={`/#${item.id}`} onClick={(e) => goTo(e, item.id)} className={`flex items-center h-btn ${linkClass}`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li className="pt-4">
+            <Button size="sm" href="/#contacto" onClick={(e) => goTo(e, 'contacto')} className="h-btn">
+              {cta.auditShort}
+            </Button>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </header>
   )
 }

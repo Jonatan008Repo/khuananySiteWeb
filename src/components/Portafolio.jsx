@@ -1,66 +1,94 @@
-import React from 'react'
+import { portfolio } from '../data/site'
+import Button from './ui/Button'
+import Eyebrow from './ui/Eyebrow'
+import SectionTitle from './ui/SectionTitle'
 
-const projects = [
-  {
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000',
-    alt: 'Colaboración creativa',
-    title: 'The Heritage Club',
-    tag: 'CORPORATIVO',
-    description: 'Rediseño de plataforma interna para gestión de activos de lujo con una interfaz intuitiva basada en proporciones áureas.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000',
-    alt: 'Diseño de interfaz móvil',
-    title: 'Vanguard Mobile AI',
-    tag: 'WEB APP',
-    description: 'Aplicación web progresiva orientada al análisis de datos financieros con estética neo-déco.',
-  },
-]
+// Marcador déco mientras no exista la captura real del proyecto.
+const placeholder = (
+  <div className="bg-case-placeholder absolute inset-0">
+    <svg viewBox="0 0 640 420" preserveAspectRatio="none" aria-hidden="true" className="absolute inset-0 w-full h-full text-gold">
+      <g stroke="currentColor" strokeOpacity="0.4" strokeWidth="1" fill="none">
+        <path d="M0 340h640M0 300h640M0 260h640" />
+        <path d="M140 420V120a180 180 0 01360 0v300M200 420V150a120 120 0 01240 0v270M260 420V180a60 60 0 01120 0v240" />
+      </g>
+      <g fill="currentColor" fillOpacity="0.16">
+        <rect x="60" y="360" width="60" height="60" />
+        <rect x="520" y="360" width="60" height="60" />
+      </g>
+    </svg>
+    <span className="absolute top-4 left-4 text-3xs font-semibold uppercase tracking-label text-soft-gold/60">
+      Captura próximamente
+    </span>
+  </div>
+)
 
 export default function Portafolio() {
   return (
-    <section id="portafolio" className="py-32">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-7xl font-bold leading-tight">Obra <br /><span className="gold-gradient">Digital</span></h2>
-            <p className="text-gray-500 mt-6 uppercase tracking-deco-lg text-2xs font-bold">Un legado de innovación visual</p>
+    <section id="obra" aria-labelledby="obra-title" className="bg-ocean px-5 lg:px-16 py-section lg:pt-section-lg lg:pb-28">
+      <div className="max-w-7xl mx-auto">
+        <header className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 lg:gap-12 mb-8 lg:mb-16">
+          <div className="flex flex-col gap-3.5 lg:gap-[18px]">
+            <Eyebrow>{portfolio.eyebrow}</Eyebrow>
+            <SectionTitle id="obra-title" title={portfolio.title} accent={portfolio.titleAccent} size="xl" accentBreak="desktop" />
           </div>
-          <div className="flex space-x-4">
-            <button className="w-12 h-12 border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-deep-black transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button className="w-12 h-12 border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-deep-black transition">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
+          <p className="text-body leading-copy text-mist lg:max-w-[400px]">{portfolio.lead}</p>
+        </header>
 
-        <div className="grid md:grid-cols-2 gap-16">
-          {projects.map((project, index) => (
-            <div key={index} className="group">
-              <div className="relative overflow-hidden deco-border" style={{ padding: 0 }}>
-                <div className="absolute inset-0 bg-gold/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
-                <img
-                  src={project.image}
-                  alt={project.alt}
-                  className="w-full h-portfolio object-cover transition duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                />
-              </div>
-              <div className="mt-8">
-                <div className="flex justify-between items-center mb-4">
-                  <h4 className="text-2xl font-bold text-soft-gold tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>{project.title}</h4>
-                  <span className="text-2xs tracking-deco-sm font-bold text-gold border-b border-gold/50 pb-1">{project.tag}</span>
+        <ul className="flex flex-col gap-12">
+          {portfolio.projects.map((project) => (
+            <li key={project.id}>
+              <article className="grid gap-7 lg:gap-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] items-center">
+                <div className="border border-gold/30 p-2 lg:p-2.5 bg-deep-black">
+                  <div className="relative aspect-[3/2] overflow-hidden">
+                    {project.imagePending ? (
+                      placeholder
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.imageAlt}
+                        width="1200"
+                        height="800"
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                    )}
+                  </div>
                 </div>
-                <p className="text-gray-400 text-sm font-light leading-relaxed">{project.description}</p>
-              </div>
-            </div>
+
+                <div className="flex flex-col gap-4 lg:gap-5">
+                  <div className="flex items-center justify-between gap-5">
+                    <h3 className="normal-case tracking-hairline text-2xl lg:text-[34px] leading-tight font-bold text-soft-gold">
+                      {project.name}
+                    </h3>
+                    <span className="whitespace-nowrap border-b border-gold/50 pb-1 text-3xs font-bold uppercase tracking-label text-gold">
+                      {project.tag}
+                    </span>
+                  </div>
+                  <p className="text-body lg:text-base leading-copy text-mist">{project.description}</p>
+                  <p className="flex items-start gap-3 pt-1 text-caption font-medium tracking-hairline text-gold">
+                    <span aria-hidden="true" className="w-[26px] h-px bg-gold mt-2.5 shrink-0" />
+                    <span>Resultado: {project.result}</span>
+                  </p>
+                  <Button
+                    variant="outline"
+                    inline
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="self-start mt-2 gap-3 h-btn px-7"
+                  >
+                    {project.linkLabel}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+                      <path d="M4 1h7v7M11 1L1 11" />
+                    </svg>
+                    <span className="sr-only">(se abre en otra pestaña)</span>
+                  </Button>
+                </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

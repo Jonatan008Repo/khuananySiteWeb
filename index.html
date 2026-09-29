@@ -6,20 +6,43 @@
     <title>Khuanany | Desarrollo Web de Lujo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Colores: canales RGB definidos en src/styles.css (:root).
+      const token = (name) => `rgb(var(--${name}-rgb) / <alpha-value>)`
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'deep-black': '#011E2E',
-              'gold': '#D4AF37',
-              'soft-gold': '#f1e5ac',
-              'racing-green': '#0a4b5d',
-              'form-dark': '#002d1a',
-              'ocean': '#04303f',
-              'ocean-light': '#0d5d70',
-              'ivory': '#F4F1E8',
-              'mist': '#A9BEC4',
-              'mist-light': '#C4D3D8',
+              'deep-black': token('deep-black'),
+              'gold': token('gold'),
+              'soft-gold': token('soft-gold'),
+              'racing-green': token('racing-green'),
+              'ocean': token('ocean'),
+              'ocean-light': token('ocean-light'),
+              'ivory': token('ivory'),
+              'mist': token('mist'),
+              'mist-light': token('mist-light'),
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', '"Times New Roman"', 'serif'],
+              body: ['Montserrat', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            },
+            fontSize: {
+              '3xs': '9px',
+              '2xs': '10px',
+              'micro': '11px',
+              'caption': '13px',
+              'body': '15px',
+              'body-lg': '17px',
+              'display-2xs': '30px',
+              'display-xs': '40px',
+              'display-sm': '46px',
+              'display-md': '52px',
+            },
+            lineHeight: {
+              'display': '1.06',
+              'heading': '1.12',
+              'copy-snug': '1.72',
+              'copy': '1.74',
             },
             letterSpacing: {
               'deco-xs': '0.2em',
@@ -27,17 +50,20 @@
               'deco-md': '0.4em',
               'deco-lg': '0.5em',
               'deco-xl': '0.6em',
+              'hairline': '0.5px',
+              'heading': '1px',
+              'heading-lg': '2px',
+              'caps': '2.5px',
+              'label': '3px',
+              'eyebrow': '4px',
+              'eyebrow-lg': '5px',
             },
-            fontSize: {
-              '2xs': '10px',
-              '3xs': '9px',
-            },
-            height: {
-              'hero': '500px',
-              'portfolio': '450px',
-            },
-            borderWidth: {
-              '12': '12px',
+            spacing: {
+              'bullet': '11px',
+              'btn': '52px',
+              'section': '52px',
+              'nav': '84px',
+              'section-lg': '104px',
             },
           },
         },

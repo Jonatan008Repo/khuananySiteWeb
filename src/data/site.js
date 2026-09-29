@@ -1,3 +1,6 @@
+// Campos `note`: aclaraciones que se muestran en letra chica (clase .fine-print),
+// nunca en el cuerpo principal del texto.
+//
 // Fuente única de verdad del sitio: textos visibles, planes, preguntas y datos
 // de la entidad. Los componentes y el JSON-LD (src/seo/schemas.js) leen de aquí,
 // para que lo que ve el visitante y lo que leen los buscadores nunca difiera.
@@ -7,9 +10,13 @@ export const SITE_URL = 'https://www.khuanany.com'
 export const formatMXN = (amount) =>
   `$${amount.toLocaleString('es-MX')} MXN`
 
+// Precios base (MXN, sin IVA). Todos los textos del sitio los toman de aquí.
+const SETUP = { esencial: 4050, negocio: 6750, pro: 10800 }
+const MONTHLY = { esencial: 750, negocio: 1350, pro: 2250 }
+const FROM = formatMXN(SETUP.esencial)
+
 export const studio = {
   name: 'Khuanany',
-  tagline: 'Atelier digital',
   foundingYear: 2024,
   city: 'Puebla',
   region: 'Puebla',
@@ -41,13 +48,15 @@ export const cta = {
   pricing: 'Ver tarifas',
 }
 
+// `priceTemplate`: el dato muestra el precio "Desde" vigente (con descuento si hay
+// una promoción activa). `value` es el texto de respaldo con el precio normal.
 export const hero = {
-  eyebrow: 'Atelier digital · Puebla',
+  eyebrow: 'Puebla',
   title: 'Sitios web con acabado de atelier',
   titleAccent: 'para negocios que quieren destacar',
   lead: 'Diseñamos, publicamos y mantenemos el sitio de tu negocio. Listo desde 5 días hábiles, con WhatsApp, Google Maps y cambios cada mes según tu plan.',
   facts: [
-    { label: 'Desde', value: '$2,250 MXN + IVA' },
+    { label: 'Desde', value: `${FROM} + IVA`, priceTemplate: '{price} + IVA' },
     { label: 'Entrega', value: 'Desde 5 días hábiles' },
     { label: 'Base', value: 'Puebla, México' },
   ],
@@ -67,7 +76,7 @@ export const about = {
     { label: 'Fundado', value: '2024' },
     { label: 'Sede', value: 'Puebla, México' },
     { label: 'Atención', value: 'Todo México, remota' },
-    { label: 'Planes', value: 'Desde $2,250 MXN + IVA' },
+    { label: 'Planes', value: `Desde ${FROM} + IVA`, priceTemplate: 'Desde {price} + IVA' },
     { label: 'Entrega', value: 'De 5 a 12 días hábiles' },
     { label: 'Contacto', value: 'jonatan-008@outlook.com', href: 'mailto:jonatan-008@outlook.com' },
   ],
@@ -100,13 +109,14 @@ export const services = {
       icon: 'shield',
       title: 'Siempre al día',
       description: 'Nos encargamos de que tu sitio siga en línea, seguro y actualizado mientras tú atiendes tu negocio.',
-      bullets: ['Dominio y hosting incluidos', 'Certificado de seguridad (HTTPS)', 'Cambios incluidos cada mes'],
+      bullets: ['Dominio y hosting incluidos', 'Cambios incluidos cada mes', 'Cambio urgente cuando lo necesites'],
+      note: 'Incluye certificado de seguridad (HTTPS).',
     },
   ],
 }
 
 export const pricing = {
-  eyebrow: 'Tarifas',
+  eyebrow: 'Planes y precios',
   title: 'Tarifas,',
   titleAccent: 'sin letra pequeña',
   lead: 'Un pago de instalación y una renta mensual que cubre dominio, hosting y cambios. Sin costos sorpresa.',
@@ -115,13 +125,38 @@ export const pricing = {
   setupLabel: 'instalación',
   monthlyLabel: 'al mes',
   deliveryLabel: 'Entrega en',
+  discountLabel: 'de descuento',
+  discountUntilLabel: 'Hasta el',
+  previousPriceLabel: 'Precio anterior:',
+  currentPriceLabel: 'Precio con descuento:',
+
+  // ── DESCUENTOS ──────────────────────────────────────────────────────────
+  // `promotion` aplica a TODOS los planes. El `discount` de un plan tiene
+  // prioridad sobre `promotion` solo mientras está vigente; fuera de sus fechas,
+  // ese plan vuelve a usar `promotion`. Déjalos en null para no mostrar nada.
+  //
+  //   {
+  //     percent: 20,              // obligatorio: 1 a 99
+  //     label: 'Lanzamiento',     // opcional: texto de la pleca
+  //     startsAt: '2026-10-01',   // opcional: primer día (AAAA-MM-DD)
+  //     endsAt: '2026-10-31',     // opcional: último día; al pasar, se oculta solo
+  //     monthly: false,           // opcional: true también descuenta la renta
+  //   }
+  //
+  // Con fechas, el precio original tachado y la pleca aparecen y desaparecen
+  // solos (hora de Ciudad de México), sin volver a publicar el sitio.
+  promotion: {
+    percent: 20, label: 'Lanzamiento', startsAt:
+      '2026-10-01', endsAt: '2026-10-31', monthly: false
+  },
   plans: [
     {
       id: 'esencial',
       numeral: 'I',
       name: 'Esencial',
-      setup: 2250,
-      monthly: 750,
+      setup: SETUP.esencial,
+      monthly: MONTHLY.esencial,
+      discount: null,
       deliveryDays: 5,
       recommended: true,
       includes: ['Landing de 1 página', 'Dominio y hosting', 'Botón de WhatsApp', '1 cambio al mes'],
@@ -130,8 +165,9 @@ export const pricing = {
       id: 'negocio',
       numeral: 'II',
       name: 'Negocio',
-      setup: 3750,
-      monthly: 1350,
+      setup: SETUP.negocio,
+      monthly: MONTHLY.negocio,
+      discount: null,
       deliveryDays: 8,
       recommended: false,
       includes: ['Sitio de 4 páginas', 'Todo lo del plan Esencial', 'Google Maps y SEO básico', '3 cambios al mes'],
@@ -140,8 +176,9 @@ export const pricing = {
       id: 'pro',
       numeral: 'III',
       name: 'Pro',
-      setup: 6000,
-      monthly: 2250,
+      setup: SETUP.pro,
+      monthly: MONTHLY.pro,
+      discount: null,
       deliveryDays: 12,
       recommended: false,
       includes: ['Sitio completo', 'Todo lo del plan Negocio', 'Catálogo y formularios', 'Cambios ilimitados'],
@@ -157,7 +194,7 @@ export const pricing = {
 }
 
 export const portfolio = {
-  eyebrow: 'Obra digital',
+  eyebrow: 'Trabajo reciente',
   title: 'Obra',
   titleAccent: 'digital',
   lead: 'Nuestro trabajo más reciente, en producción.',
@@ -193,22 +230,28 @@ export const faq = {
     {
       id: 'costo',
       question: '¿Cuánto cuesta un sitio web con Khuanany?',
-      answer: 'Desde $2,250 MXN de instalación más $750 MXN al mes, más IVA. Hay tres planes: Esencial ($2,250 + $750 al mes), Negocio ($3,750 + $1,350 al mes) y Pro ($6,000 + $2,250 al mes), y cualquiera se puede ampliar a tu medida.',
+      // La respuesta se arma con los precios y el descuento vigente:
+      // src/utils/faq.js → getFaqAnswer()
+      answer: null,
+      answerFrom: 'pricing',
     },
     {
       id: 'plazo',
       question: '¿Cuánto tarda un proyecto?',
-      answer: 'Entre 5 y 12 días hábiles, según el plan: Esencial en 5, Negocio en 8 y Pro en 12. El plazo corre desde que recibimos tus textos, fotos y logotipo.',
+      answer: 'Entre 5 y 12 días hábiles, según el plan: Esencial en 5, Negocio en 8 y Pro en 12.',
+      note: 'El plazo corre desde que recibimos tus textos, fotos y logotipo.',
     },
     {
       id: 'renta',
       question: '¿Qué incluye la renta mensual y el sitio es mío?',
-      answer: 'La renta cubre dominio, hosting, certificado de seguridad y los cambios de tu plan cada mes. Si prefieres quedarte con el sitio en propiedad y dejar de pagar renta, la liberación del sitio cuesta $9,000 MXN más IVA.',
+      answer: 'La renta cubre dominio, hosting y los cambios de tu plan cada mes. Si prefieres quedarte con el sitio en propiedad y dejar de pagar renta, la liberación del sitio cuesta $9,000 MXN más IVA.',
+      note: 'La renta también incluye el certificado de seguridad (HTTPS).',
     },
     {
       id: 'cobertura',
       question: '¿Atienden fuera de Puebla?',
-      answer: 'Sí. Trabajamos con negocios de todo México de forma remota, por correo y videollamada, y facturamos en pesos mexicanos.',
+      answer: 'Sí. Trabajamos con negocios de todo México de forma remota y facturamos en pesos mexicanos.',
+      note: 'La atención es por correo y videollamada.',
     },
     {
       id: 'auditoria',
@@ -243,14 +286,14 @@ export const legalLinks = [
 ]
 
 export const footer = {
-  description: 'Atelier digital de diseño web en Puebla. Acabado Art Déco y planes accesibles, desde 2024.',
+  description: 'Diseño web en Puebla. Acabado Art Déco y planes accesibles, desde 2024.',
   columns: { studio: 'Estudio', legal: 'Legal', contact: 'Contacto' },
   copyright: `© ${new Date().getFullYear()} Khuanany · www.khuanany.com`,
 }
 
 export const seo = {
-  defaultTitle: 'Khuanany | Diseño web en Puebla para negocios, desde $2,250 MXN',
-  defaultDescription: 'Atelier de diseño web en Puebla. Sitios con acabado Art Déco para negocios de todo México, listos desde 5 días hábiles, con WhatsApp, Google Maps y planes desde $2,250 MXN.',
+  defaultTitle: `Khuanany | Diseño web en Puebla para negocios, desde ${FROM}`,
+  defaultDescription: `Atelier de diseño web en Puebla. Sitios con acabado Art Déco para negocios de todo México, listos desde 5 días hábiles, con WhatsApp, Google Maps y planes desde ${FROM}.`,
   routes: {
     '/terminos': { title: 'Términos y condiciones | Khuanany', description: 'Términos y condiciones de uso del sitio y los servicios de Khuanany, atelier de diseño web en Puebla, México.' },
     '/privacidad': { title: 'Política de privacidad | Khuanany', description: 'Cómo Khuanany recopila, usa y protege tus datos personales.' },
