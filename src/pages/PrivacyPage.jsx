@@ -1,5 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { LEGAL_UPDATED, studio } from '../data/site'
+
+const h2 = 'text-2xl deco-font text-gold tracking-widest mb-4'
+const h3 = 'text-soft-gold font-semibold mb-2'
+const link = 'text-gold underline underline-offset-2 hover:text-soft-gold'
 
 export default function PrivacyPage() {
   return (
@@ -11,196 +15,155 @@ export default function PrivacyPage() {
             Política de Privacidad
           </h1>
           <div className="h-1 w-24 bg-gradient-to-r from-gold via-soft-gold to-gold mb-6"></div>
-          <p className="text-gray-400 text-lg font-light">
-            Última actualización: Abril 2026
-          </p>
+          <p className="text-gray-400 text-lg font-light">Última actualización: {LEGAL_UPDATED}</p>
         </div>
 
         {/* Content */}
         <div className="space-y-8 text-gray-300 font-light leading-relaxed">
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              1. Introducción
-            </h2>
+            <h2 className={h2}>1. Quiénes somos</h2>
             <p>
-              En KHUANANY, respetamos tu privacidad y nos comprometemos a proteger tus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos, compartimos y protegemos tu información cuando visitas nuestro sitio web (www.khuanany.com).
+              Khuanany es un atelier de diseño y desarrollo web con sede en {studio.location}. Esta política explica qué datos
+              personales tratamos cuando visitas www.khuanany.com o nos solicitas una auditoría, para qué los usamos y cómo
+              puedes ejercer tus derechos. Para cualquier asunto de privacidad escríbenos a{' '}
+              <a href={`mailto:${studio.email}`} className={link}>{studio.email}</a>.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              2. Información que Recopilamos
-            </h2>
+            <h2 className={h2}>2. Datos que tratamos</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-soft-gold font-semibold mb-2">Información Proporcionada Directamente</h3>
+                <h3 className={h3}>Los que tú nos envías</h3>
                 <p>
-                  Cuando contactas con nosotros a través del formulario de contacto, recopilamos tu nombre, correo electrónico, número de teléfono y mensaje. Esta información se utiliza exclusivamente para responder a tu consulta.
+                  Cuando solicitas una auditoría usamos un formulario de Microsoft Forms. Recibimos los datos que decidas
+                  escribir en él (por ejemplo, tu nombre, tu correo y la descripción de tu proyecto). Si nos escribes por
+                  correo, recibimos tu dirección y el contenido del mensaje. Los usamos solo para responderte y preparar la
+                  auditoría o la cotización que pediste.
                 </p>
               </div>
               <div>
-                <h3 className="text-soft-gold font-semibold mb-2">Información Recopilada Automáticamente</h3>
+                <h3 className={h3}>Medición de visitas, solo si la aceptas</h3>
                 <p>
-                  Mediante cookies y tecnología similar, recopilamos información sobre tu navegación, incluida tu dirección IP, tipo de navegador, páginas visitadas, tiempo de permanencia y fuente de referencia. Esto nos ayuda a mejorar la experiencia del usuario.
+                  Si aceptas en el aviso de cookies, usamos Google Analytics 4 para contar visitas y saber qué secciones se
+                  leen: páginas vistas, tipo de dispositivo y navegador, ciudad o región aproximada y cómo llegaste al sitio.
+                  Desactivamos las señales de Google y la personalización de anuncios. Si rechazas, no se carga Google
+                  Analytics y no se mide tu visita.
                 </p>
               </div>
               <div>
-                <h3 className="text-soft-gold font-semibold mb-2">Información Analítica</h3>
+                <h3 className={h3}>Datos técnicos</h3>
                 <p>
-                  Utilizamos Google Analytics y herramientas similares para entender cómo interactúan los usuarios con nuestro sitio. Estos datos no incluyen información personalmente identificable.
+                  Como en cualquier sitio, el servidor que publica la página y los servicios que cargan la tipografía (Google
+                  Fonts) y los estilos (cdn.tailwindcss.com) reciben tu dirección IP y datos técnicos de tu navegador para
+                  poder entregarte el contenido.
                 </p>
               </div>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              3. Cómo Utilizamos Tu Información
-            </h2>
+            <h2 className={h2}>3. Para qué los usamos</h2>
             <ul className="list-disc list-inside space-y-2 ml-2">
-              <li>Responder a tus consultas y solicitudes de contacto</li>
-              <li>Mejorar y optimizar la experiencia del usuario en nuestro sitio</li>
-              <li>Analizar patrones de uso y tendencias</li>
-              <li>Personalizar contenido según tus preferencias</li>
-              <li>Cumplir con obligaciones legales y regulatorias</li>
-              <li>Prevenir fraude y garantizar la seguridad del sitio</li>
+              <li>Responder tus solicitudes y enviarte la auditoría o cotización que pediste.</li>
+              <li>Conocer, de forma estadística, cómo se usa el sitio para mejorarlo (solo con tu consentimiento).</li>
+              <li>Mantener el sitio disponible y seguro.</li>
             </ul>
+            <p className="mt-4">No usamos tus datos para publicidad, no los vendemos y no creamos perfiles comerciales.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              4. Cookies y Tecnologías Similares
-            </h2>
-            <p className="mb-4">
-              Utilizamos cookies para mejorar tu experiencia en nuestro sitio:
-            </p>
-            <div className="space-y-3 ml-4">
-              <div>
-                <strong className="text-soft-gold">Cookies Técnicas:</strong>
-                <p>Necesarias para el funcionamiento del sitio (sesión, seguridad).</p>
-              </div>
-              <div>
-                <strong className="text-soft-gold">Cookies Analíticas:</strong>
-                <p>Nos permiten medir y analizar el comportamiento de los usuarios.</p>
-              </div>
-              <div>
-                <strong className="text-soft-gold">Cookies de Preferencias:</strong>
-                <p>Guardan tus preferencias y configuración personalizada.</p>
-              </div>
-              <div>
-                <strong className="text-soft-gold">Cookies de Marketing:</strong>
-                <p>Ayudan a personalizar publicidad y contenido.</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              5. Compartición de Datos
-            </h2>
+            <h2 className={h2}>4. Cookies</h2>
             <p>
-              No compartimos tus datos personales con terceros, excepto en los siguientes casos:
+              La única cookie de medición es la de Google Analytics y solo se guarda si la aceptas. En la{' '}
+              <Link to="/cookies" className={link}>política de cookies</Link> encontrarás la lista completa, su duración y
+              cómo cambiar tu decisión en cualquier momento.
             </p>
+          </section>
+
+          <section>
+            <h2 className={h2}>5. Con quién se comparten</h2>
+            <p>Solo con los proveedores que hacen funcionar el sitio, cada uno bajo su propia política de privacidad:</p>
             <ul className="list-disc list-inside space-y-2 ml-2 mt-3">
-              <li>Con proveedores de servicios que nos ayudan a operar el sitio (hospedaje, análisis)</li>
-              <li>Cuando sea requerido por ley o para proteger derechos legales</li>
-              <li>En caso de fusión o venta de la empresa (con aviso previo)</li>
+              <li>Microsoft, que aloja el formulario de solicitud de auditoría (Microsoft Forms).</li>
+              <li>Google, si aceptas la medición (Google Analytics) y para servir la tipografía (Google Fonts).</li>
+              <li>El servicio de alojamiento que publica el sitio.</li>
+              <li>Autoridades, únicamente cuando la ley lo exija.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              6. Seguridad de Datos
-            </h2>
+            <h2 className={h2}>6. Seguridad</h2>
             <p>
-              Implementamos medidas de seguridad técnicas, administrativas y físicas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción. Estas incluyen encriptación SSL, firewalls y controles de acceso restringidos.
+              El sitio se sirve por conexión cifrada (HTTPS) y solo usamos proveedores reconocidos para recibir tus datos.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              7. Retención de Datos
-            </h2>
+            <h2 className={h2}>7. Cuánto tiempo los conservamos</h2>
             <p>
-              Retenemos tu información personal solo por el tiempo necesario para cumplir con los propósitos descritos en esta política o según lo requerido por ley. Los datos de contacto se conservan por un máximo de 2 años a menos que solicites su eliminación.
+              Conservamos los datos de tu solicitud mientras dure la relación contigo y, después, solo el tiempo necesario
+              para atender obligaciones legales o aclaraciones. Los datos de medición se conservan según la configuración
+              de retención de Google Analytics. Puedes pedir que eliminemos tus datos en cualquier momento.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              8. Tus Derechos
-            </h2>
-            <p className="mb-4">Tienes derecho a:</p>
+            <h2 className={h2}>8. Tus derechos (ARCO)</h2>
+            <p className="mb-4">Conforme a la legislación mexicana de protección de datos personales, puedes:</p>
             <ul className="list-disc list-inside space-y-2 ml-2">
-              <li><strong>Acceder</strong> a tus datos personales</li>
-              <li><strong>Rectificar</strong> información inexacta</li>
-              <li><strong>Eliminar</strong> tus datos (derecho al olvido)</li>
-              <li><strong>Restringir</strong> el procesamiento de tus datos</li>
-              <li><strong>Portabilidad</strong> de tus datos</li>
-              <li><strong>Oponerme</strong> al procesamiento de mis datos</li>
+              <li><strong>Acceder</strong> a los datos que tenemos sobre ti.</li>
+              <li><strong>Rectificarlos</strong> si son inexactos o están incompletos.</li>
+              <li><strong>Cancelarlos</strong> cuando ya no sean necesarios.</li>
+              <li><strong>Oponerte</strong> a su uso para fines específicos.</li>
             </ul>
             <p className="mt-4">
-              Para ejercer estos derechos, contáctanos en info@khuanany.com con tu solicitud detallada.
+              También puedes revocar tu consentimiento para la medición desde la{' '}
+              <Link to="/cookies" className={link}>política de cookies</Link>. Para ejercer cualquiera de estos derechos
+              escríbenos a <a href={`mailto:${studio.email}`} className={link}>{studio.email}</a> indicando tu nombre y tu
+              solicitud.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              9. Menores de Edad
-            </h2>
+            <h2 className={h2}>9. Menores de edad</h2>
             <p>
-              Nuestro sitio no está dirigido a menores de 13 años. No recopilamos información de menores de 13 años de manera intencional. Si descubrimos que hemos recopilado información de un menor, la eliminaremos inmediatamente.
+              El sitio está dirigido a negocios y no a menores de edad. Si nos enteramos de que recibimos datos de un menor
+              sin autorización de quien ejerce la patria potestad o tutela, los eliminaremos.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              10. Enlaces Externos
-            </h2>
+            <h2 className={h2}>10. Enlaces externos</h2>
             <p>
-              Nuestro sitio puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de estos sitios. Te recomendamos revisar sus políticas de privacidad antes de proporcionar información personal.
+              El sitio enlaza a sitios de terceros, como el de clientes en nuestro portafolio. No somos responsables de sus
+              prácticas de privacidad; te recomendamos revisar sus políticas.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              11. Actualizaciones de esta Política
-            </h2>
+            <h2 className={h2}>11. Cambios a esta política</h2>
             <p>
-              Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos publicando la versión actualizada en esta página. Verificando regularmente, asegúrate de estar informado sobre cómo protegemos tu información.
+              Si cambiamos esta política publicaremos la nueva versión en esta página con su fecha de actualización.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl deco-font text-gold tracking-widest mb-4">
-              12. Contacto
-            </h2>
-            <p>
-              Si tienes preguntas, inquietudes o solicitudes relacionadas con esta Política de Privacidad, contáctanos:
-            </p>
+            <h2 className={h2}>12. Contacto</h2>
             <div className="mt-4 ml-4 space-y-2">
               <p>
-                <strong className="text-soft-gold">Email:</strong> jonatan-008@outlook.com
+                <strong className="text-soft-gold">Correo:</strong>{' '}
+                <a href={`mailto:${studio.email}`} className={link}>{studio.email}</a>
               </p>
-              <p>
-                <strong className="text-soft-gold">Sitio Web:</strong> www.khuanany.com
-              </p>
+              <p><strong className="text-soft-gold">Ubicación:</strong> {studio.location}</p>
+              <p><strong className="text-soft-gold">Sitio web:</strong> www.khuanany.com</p>
             </div>
-          </section>
-
-          <section className="border-t border-gold/10 pt-8">
-            <p className="text-gray-500 text-sm">
-              Esta Política de Privacidad entra en vigor a partir de abril de 2026 y se aplica a todos los visitantes y usuarios de www.khuanany.com.
-            </p>
           </section>
         </div>
 
         {/* Back Link */}
         <div className="mt-16 pt-8 border-t border-gold/10">
-          <Link
-            to="/"
-            className="inline-block btn-deco"
-          >
+          <Link to="/" className="inline-block btn-deco">
             Volver al Inicio
           </Link>
         </div>

@@ -1,209 +1,78 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { consent } from '../data/site'
+import { getConsent, onConsentOpen, setConsent } from '../utils/consent'
 
+// Aviso de cookies: panel inferior que no bloquea la página. Aparece si aún no
+// hay decisión, o cuando se pide "Configurar cookies" (pie, página /cookies).
 export default function ComplianceModal() {
   const [isVisible, setIsVisible] = useState(false)
-  const [activeTab, setActiveTab] = useState('cookies')
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [scrollRef, setScrollRef] = useState(null)
+  const panelRef = useRef(null)
+  const returnFocusRef = useRef(null)
 
   useEffect(() => {
-    const complianceAccepted = localStorage.getItem('complianceAccepted')
-    if (!complianceAccepted) {
-      setTimeout(() => setIsVisible(true), 1500)
+    let timer
+    if (!getConsent()) timer = setTimeout(() => setIsVisible(true), 1500)
+    const stop = onConsentOpen(() => {
+      returnFocusRef.current = document.activeElement
+      setIsVisible(true)
+    })
+    return () => {
+      clearTimeout(timer)
+      stop()
     }
   }, [])
 
+  // Al reabrirlo a petición, el foco va al panel para que se anuncie.
   useEffect(() => {
-    if (!scrollRef) return
+    if (isVisible && returnFocusRef.current) panelRef.current?.focus()
+  }, [isVisible])
 
-    const handleScroll = () => {
-      const scrollTop = scrollRef.scrollTop
-      const scrollHeight = scrollRef.scrollHeight
-      const clientHeight = scrollRef.clientHeight
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10
-      setIsScrolled(isAtBottom)
-    }
-
-    scrollRef.addEventListener('scroll', handleScroll)
-    return () => scrollRef.removeEventListener('scroll', handleScroll)
-  }, [scrollRef])
-
-  const handleAccept = () => {
-    localStorage.setItem('complianceAccepted', 'true')
+  const decide = (status) => {
+    setConsent(status)
     setIsVisible(false)
+    const target = returnFocusRef.current
+    returnFocusRef.current = null
+    if (target && document.contains(target)) target.focus()
   }
 
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-deep-black border border-gold/30 rounded-lg max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
-        {/* Tabs */}
-        <div className="border-b border-gold/20 p-6">
-          <div className="flex gap-4 mb-4">
-            <button
-              onClick={() => {
-                setActiveTab('cookies')
-                setIsScrolled(false)
-              }}
-              className={`py-2 px-4 font-semibold tracking-deco text-sm transition ${
-                activeTab === 'cookies'
-                  ? 'text-gold border-b-2 border-gold'
-                  : 'text-gray-400 border-b-2 border-transparent hover:text-gold'
-              }`}
-            >
-              Cookies
-            </button>
-            <button
-              onClick={() => {
-                setActiveTab('terms')
-                setIsScrolled(false)
-              }}
-              className={`py-2 px-4 font-semibold tracking-deco text-sm transition ${
-                activeTab === 'terms'
-                  ? 'text-gold border-b-2 border-gold'
-                  : 'text-gray-400 border-b-2 border-transparent hover:text-gold'
-              }`}
-            >
-              Términos
-            </button>
-          </div>
-          <p className="text-gray-400 text-sm font-light">
-            {activeTab === 'cookies'
-              ? 'Gestión de cookies y privacidad'
-              : 'Términos y condiciones de uso'}
-          </p>
-        </div>
-
-        {/* Content */}
-        <div
-          ref={setScrollRef}
-          className="overflow-y-auto flex-1 p-6"
-        >
-          {activeTab === 'cookies' && (
-            <div className="text-gray-300 text-sm font-light space-y-4 leading-relaxed">
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">Política de Cookies</h3>
-                <p>
-                  En KHUANANY utilizamos cookies para mejorar tu experiencia de navegación, recordar tus preferencias y analizar el uso del sitio. Las cookies son pequeños archivos que se almacenan en tu dispositivo.
-                </p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">Tipos de Cookies</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  <li><strong>Cookies Necesarias:</strong> Esenciales para el funcionamiento del sitio</li>
-                  <li><strong>Cookies de Análisis:</strong> Nos ayudan a entender cómo usas el sitio</li>
-                  <li><strong>Cookies de Preferencias:</strong> Recuerdan tu configuración y preferencias</li>
-                  <li><strong>Cookies de Marketing:</strong> Personalizan el contenido y los anuncios</li>
-                </ul>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">Control de Cookies</h3>
-                <p>
-                  Puedes controlar y/o eliminar las cookies usando la configuración de tu navegador. Rechazar las cookies puede afectar tu experiencia en el sitio.
-                </p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">Privacidad de Datos</h3>
-                <p>
-                  Tus datos personales se procesan conforme a nuestra Política de Privacidad. Protegemos tu información con medidas de seguridad de la industria.
-                </p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">Actualizaciones</h3>
-                <p>
-                  Esta política se actualiza periódicamente. Te notificaremos de cambios significativos publicando la versión actualizada en nuestro sitio.
-                </p>
-              </section>
-            </div>
-          )}
-
-          {activeTab === 'terms' && (
-            <div className="text-gray-300 text-sm font-light space-y-4 leading-relaxed">
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">1. Aceptación de Términos</h3>
-                <p>Al acceder y utilizar este sitio web, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguna parte, no debes utilizar este sitio.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">2. Uso Licenciado</h3>
-                <p>Se te concede una licencia limitada, no exclusiva y revocable para acceder y usar este sitio web únicamente para propósitos personales y no comerciales.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">3. Limitación de Responsabilidad</h3>
-                <p>En ningún caso KHUANANY será responsable por daños indirectos, incidentales, especiales o consecuentes que surjan de tu uso de este sitio web o los servicios ofrecidos.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">4. Propiedad Intelectual</h3>
-                <p>Todos los contenidos, diseños, imágenes y textos en este sitio web son propiedad de KHUANANY o sus proveedores de contenido licenciado y están protegidos por leyes de derechos de autor.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">5. Cambios en los Términos</h3>
-                <p>KHUANANY se reserva el derecho de modificar estos términos en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en el sitio.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">6. Privacidad y Datos</h3>
-                <p>Tu privacidad es importante para nosotros. Consulta nuestra Política de Privacidad para entender cómo recopilamos, usamos y protegemos tu información personal.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">7. Cumplimiento Legal</h3>
-                <p>Este sitio cumple con la Ley de Cookies y regulaciones de privacidad aplicables. Nos comprometemos a proteger tus derechos digitales.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">8. Ley Aplicable</h3>
-                <p>Estos términos y condiciones se rigen por las leyes aplicables y están sujetos a la jurisdicción competente.</p>
-              </section>
-
-              <section>
-                <h3 className="text-gold font-semibold mb-2 tracking-deco">9. Contacto</h3>
-                <p>Si tienes preguntas sobre estos términos, contáctanos a través de nuestro formulario de contacto o envía un correo a info@khuanany.com</p>
-              </section>
-            </div>
-          )}
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-gold/20 p-6 bg-deep-black/80">
-          <div className="flex gap-3 mb-3">
-            <button
-              onClick={() => setIsVisible(false)}
-              className="flex-1 px-4 py-2.5 text-sm border border-gold/50 text-gold/70 hover:text-gold hover:border-gold transition rounded font-medium tracking-deco"
-            >
-              Cerrar
-            </button>
-            <button
-              onClick={handleAccept}
-              disabled={!isScrolled}
-              className={`flex-1 px-4 py-2.5 text-sm rounded font-semibold tracking-deco transition ${
-                isScrolled
-                  ? 'bg-gold text-deep-black hover:bg-soft-gold cursor-pointer'
-                  : 'bg-gray-600 text-gray-400 cursor-not-allowed opacity-50'
-              }`}
-            >
-              {isScrolled ? 'Aceptar' : 'Desplázate para aceptar'}
-            </button>
-          </div>
-          <p className="text-gray-500 text-xs text-center font-light">
-            También puedes ver la{' '}
-            <Link
-              to="/privacidad"
-              className="text-gold hover:text-soft-gold transition"
-              onClick={() => setIsVisible(false)}
-            >
-              Política de Privacidad
+    <div
+      ref={panelRef}
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="consent-title"
+      aria-describedby="consent-text"
+      tabIndex={-1}
+      className="fixed inset-x-0 bottom-0 z-40 p-3 sm:p-5 pointer-events-none"
+    >
+      <div className="pointer-events-auto max-w-3xl mx-auto bg-deep-black border border-gold/30 shadow-2xl p-5 sm:p-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-8">
+        <div className="flex flex-col gap-2">
+          <p id="consent-title" className="font-display text-lg font-bold text-ivory">{consent.title}</p>
+          <p id="consent-text" className="text-sm leading-copy text-mist">
+            {consent.text}{' '}
+            <Link to="/cookies" className="text-gold underline underline-offset-2 hover:text-soft-gold">
+              {consent.more}
             </Link>
           </p>
+        </div>
+        <div className="flex gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={() => decide('rejected')}
+            className="flex-1 sm:flex-none h-11 px-6 border border-gold/50 text-soft-gold text-2xs font-semibold uppercase tracking-caps hover:border-gold hover:text-gold transition-colors"
+          >
+            {consent.reject}
+          </button>
+          <button
+            type="button"
+            onClick={() => decide('accepted')}
+            className="flex-1 sm:flex-none h-11 px-6 bg-gold text-deep-black text-2xs font-bold uppercase tracking-caps hover:bg-soft-gold transition-colors"
+          >
+            {consent.accept}
+          </button>
         </div>
       </div>
     </div>

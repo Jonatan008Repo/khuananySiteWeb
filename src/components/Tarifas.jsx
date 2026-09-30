@@ -1,6 +1,6 @@
-import { cta, formatMXN, pricing } from '../data/site'
+import { auditFormUrl, cta, formatMXN, pricing } from '../data/site'
+import { useAuditModal } from './audit/auditContext'
 import { formatEndDate, getPlanPricing } from '../utils/discounts'
-import { scrollToSection } from '../utils/scrollToSection'
 import Button from './ui/Button'
 import Diamond from './ui/Diamond'
 import Eyebrow from './ui/Eyebrow'
@@ -12,10 +12,7 @@ export default function Tarifas() {
   const plans = pricing.plans.map((plan) => ({ plan, price: getPlanPricing(plan, pricing.promotion) }))
   const anyDiscount = plans.some(({ price }) => price.discount)
 
-  const goToContact = (e) => {
-    e.preventDefault()
-    scrollToSection('contacto')
-  }
+  const { openAudit } = useAuditModal()
 
   return (
     <section id="tarifas" aria-labelledby="tarifas-title" className="bg-deep-black px-5 lg:px-16 py-section lg:pt-section-lg lg:pb-28">
@@ -125,7 +122,7 @@ export default function Tarifas() {
 
           <div className="flex flex-col gap-5 border-l-0 lg:border-l border-gold/20 lg:pl-10">
             <p className="text-body leading-copy text-mist">{pricing.growthNote}</p>
-            <Button href="#contacto" onClick={goToContact} className="h-btn px-8">
+            <Button href={auditFormUrl} onClick={openAudit} aria-haspopup="dialog" className="h-btn px-8">
               {cta.audit}
             </Button>
           </div>

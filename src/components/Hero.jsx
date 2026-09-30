@@ -1,4 +1,5 @@
-import { cta, formatMXN, hero, pricing } from '../data/site'
+import { auditFormUrl, cta, formatMXN, hero, pricing } from '../data/site'
+import { useAuditModal } from './audit/auditContext'
 import { resolveFactValue } from '../utils/discounts'
 import { scrollToSection } from '../utils/scrollToSection'
 import Button from './ui/Button'
@@ -39,6 +40,7 @@ function DecoPanel() {
 }
 
 export default function Hero() {
+  const { openAudit } = useAuditModal()
   const go = (id) => (e) => {
     e.preventDefault()
     scrollToSection(id)
@@ -79,7 +81,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 w-full sm:w-auto mb-10 lg:mb-[52px]">
-            <Button href="#contacto" onClick={go('contacto')} className="h-btn lg:h-auto lg:py-[19px] px-11 lg:px-8 lg:tracking-label">
+            <Button href={auditFormUrl} onClick={openAudit} aria-haspopup="dialog" className="h-btn lg:h-auto lg:py-[19px] px-11 lg:px-8 lg:tracking-label">
               {cta.audit}
             </Button>
             <Button variant="outline" href="#tarifas" onClick={go('tarifas')} className="h-btn lg:h-auto lg:py-[19px] px-10 lg:px-7 xl:px-8 lg:tracking-label">

@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { cta, nav, studio } from '../data/site'
-import { scrollToSection } from '../utils/scrollToSection'
+import { useEffect, useRef, useState } from 'react'
+import { auditFormUrl, cta, nav, studio } from '../data/site'
+import { useAuditModal } from './audit/auditContext'
+import { useSectionNav } from '../utils/useSectionNav'
 import Button from './ui/Button'
 
 export default function Navbar() {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { goToSection, goHome: goHomeBase } = useSectionNav()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuButtonRef = useRef(null)
+  const { openAudit } = useAuditModal()
 
   useEffect(() => {
     if (!isMenuOpen) return undefined
@@ -17,21 +18,13 @@ export default function Navbar() {
   }, [isMenuOpen])
 
   const goTo = (e, id) => {
-    e.preventDefault()
     setIsMenuOpen(false)
-    if (location.pathname === '/') {
-      scrollToSection(id)
-      return
-    }
-    navigate('/')
-    setTimeout(() => scrollToSection(id), 100)
+    goToSection(e, id)
   }
 
   const goHome = (e) => {
-    e.preventDefault()
     setIsMenuOpen(false)
-    if (location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' })
-    else navigate('/')
+    goHomeBase(e)
   }
 
   const linkClass =
@@ -56,12 +49,13 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <Button variant="ghost" size="sm" href="/#contacto" onClick={(e) => goTo(e, 'contacto')} className="px-7 py-3">
+          <Button variant="ghost" size="sm" href={auditFormUrl} onClick={openAudit} aria-haspopup="dialog" className="px-7 py-3">
             {cta.auditShort}
           </Button>
         </div>
 
         <button
+          ref={menuButtonRef}
           type="button"
           className="lg:hidden w-[46px] h-[46px] flex items-center justify-center border border-gold/40 text-gold"
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -88,7 +82,16 @@ export default function Navbar() {
             </li>
           ))}
           <li className="pt-4">
-            <Button size="sm" href="/#contacto" onClick={(e) => goTo(e, 'contacto')} className="h-btn">
+            <Button
+              size="sm"
+              href={auditFormUrl}
+              aria-haspopup="dialog"
+              onClick={(e) => {
+                setIsMenuOpen(false)
+                openAudit(e, menuButtonRef.current) // el botón del menú se oculta al cerrarlo
+              }}
+              className="h-btn"
+            >
               {cta.auditShort}
             </Button>
           </li>

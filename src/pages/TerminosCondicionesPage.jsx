@@ -1,4 +1,5 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
+import { LEGAL_UPDATED, studio } from '../data/site'
 
 export default function TerminosCondicionesPage() {
   return (
@@ -7,6 +8,7 @@ export default function TerminosCondicionesPage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-12 leading-tight">
           <span className="gold-gradient">Términos y Condiciones</span>
         </h1>
+        <p className="text-gray-400 -mt-8 mb-12">Última actualización: {LEGAL_UPDATED}</p>
 
         <article className="space-y-12 text-gray-300 leading-relaxed">
           <section>
@@ -22,13 +24,11 @@ export default function TerminosCondicionesPage() {
           <section>
             <h2 className="text-2xl font-bold text-gold mb-4">Cookies</h2>
             <p className="mb-4">
-              El <strong>SITIO WEB</strong> utiliza cookies para personalizar su experiencia en línea. Al acceder a este <strong>SITIO WEB</strong>, usted acepta utilizar las cookies requeridas.
-            </p>
-            <p className="mb-4">
-              Una cookie es un archivo de texto que un servidor web coloca en su dispositivo. Las cookies no se pueden utilizar para ejecutar programas o enviar virus a su computadora.
+              El <strong>SITIO WEB</strong> no usa cookies de publicidad ni de marketing. La única medición es Google Analytics, que solo se activa si usted la acepta en el aviso de cookies; si la rechaza, el sitio funciona igual.
             </p>
             <p>
-              Podemos usar cookies para recopilar, almacenar y rastrear información con fines estadísticos o de marketing. Algunas cookies requeridas son necesarias para el funcionamiento del <strong>SITIO WEB</strong>.
+              Una cookie es un archivo de texto que un sitio guarda en su navegador. Puede consultar la lista completa y cambiar su decisión en cualquier momento en la{' '}
+              <Link to="/cookies" className="text-gold hover:text-soft-gold transition underline underline-offset-2">política de cookies</Link>.
             </p>
           </section>
 
@@ -47,23 +47,6 @@ export default function TerminosCondicionesPage() {
             <p>
               Si considera que algún contenido del <strong>SITIO WEB</strong> supone una violación de derechos de propiedad industrial o intelectual, comuníquelo inmediatamente al <strong>TITULAR</strong>.
             </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-gold mb-4">Comentarios de usuarios</h2>
-            <p className="mb-4">
-              Partes de este <strong>SITIO WEB</strong> podrían ofrecer a los usuarios la oportunidad de publicar e intercambiar opiniones.
-            </p>
-            <p className="mb-4">
-              El <strong>TITULAR</strong> se reserva el derecho de monitorear y eliminar cualquier comentario que sea inapropiado, ofensivo o contrario a estos términos y condiciones.
-            </p>
-            <h3 className="text-xl font-semibold text-soft-gold mb-3">Usted garantiza y declara que</h3>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Tiene derecho a publicar comentarios y cuenta con permisos requeridos para hacerlo.</li>
-              <li>Los comentarios no invaden derechos de propiedad intelectual de terceros.</li>
-              <li>Los comentarios no contienen material difamatorio, ofensivo o ilegal.</li>
-              <li>Los comentarios no se utilizarán para promover actividades comerciales ilegales.</li>
-            </ul>
           </section>
 
           <section>
@@ -95,10 +78,11 @@ export default function TerminosCondicionesPage() {
           <section>
             <h2 className="text-2xl font-bold text-gold mb-4">Contacto</h2>
             <p>
-              Para reportar incidencias legales o de propiedad intelectual, escríbanos a{' '}
-              <a href="mailto:jonatan-008@outlook.com" className="text-gold hover:text-soft-gold transition">
-                jonatan-008@outlook.com
-              </a>.
+              Khuanany tiene su sede en {studio.location}. Para dudas sobre estos términos o para reportar incidencias legales o de propiedad intelectual, escríbanos a{' '}
+              <a href={`mailto:${studio.email}`} className="text-gold hover:text-soft-gold transition">
+                {studio.email}
+              </a>. Para el tratamiento de datos personales consulte la{' '}
+              <Link to="/privacidad" className="text-gold hover:text-soft-gold transition underline underline-offset-2">política de privacidad</Link>.
             </p>
           </section>
         </article>

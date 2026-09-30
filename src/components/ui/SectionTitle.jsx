@@ -12,11 +12,12 @@ const ACCENT_BREAK = {
   mobile: 'block sm:inline',
 }
 
-export default function SectionTitle({ id, title, accent, size = 'lg', accentBreak = 'mobile' }) {
+// `as`: 'h2' en secciones; 'h1' en el título principal de una página.
+export default function SectionTitle({ id, title, accent, size = 'lg', accentBreak = 'mobile', as: Tag = 'h2' }) {
   return (
-    <h2 id={id} className={`text-display-2xs ${SIZES[size]} font-bold text-ivory uppercase tracking-heading`}>
+    <Tag id={id} className={`text-display-2xs ${SIZES[size]} font-bold text-ivory uppercase tracking-heading`}>
       {title}{' '}
       <span className={`${ACCENT_BREAK[accentBreak]} italic font-normal normal-case tracking-normal text-gold`}>{accent}</span>
-    </h2>
+    </Tag>
   )
 }

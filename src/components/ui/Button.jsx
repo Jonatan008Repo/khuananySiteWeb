@@ -14,14 +14,18 @@ const SIZES = {
   sm: 'text-2xs',
 }
 
-export default function Button({ variant = 'primary', size = 'md', inline = false, className = '', children, ...props }) {
+// wrap: permite partir el texto en pantallas chicas (una línea desde sm).
+// as: 'a' (enlace, por defecto) o 'button' para acciones en la misma página.
+export default function Button({ as: Tag = 'a', variant = 'primary', size = 'md', inline = false, wrap = false, className = '', children, ...props }) {
   const display = inline ? 'inline-flex' : 'flex'
+  const whitespace = wrap ? 'text-center sm:whitespace-nowrap' : 'whitespace-nowrap'
   return (
-    <a
-      className={`${display} items-center justify-center whitespace-nowrap uppercase tracking-caps transition-colors ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
+    <Tag
+      {...(Tag === 'button' ? { type: 'button' } : {})}
+      className={`${display} items-center justify-center ${whitespace} uppercase tracking-caps transition-colors ${VARIANTS[variant]} ${SIZES[size]} ${className}`}
       {...props}
     >
       {children}
-    </a>
+    </Tag>
   )
 }

@@ -42,23 +42,6 @@ p, a, label, input, textarea, button {
   font-family: 'Montserrat', sans-serif;
 }
 
-.deco-border {
-  border: 2px solid var(--gold);
-  position: relative;
-  padding: 1.5rem;
-}
-
-.deco-border::before {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 1px solid var(--gold);
-  pointer-events: none;
-}
-
 .deco-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23d4af37' fill-opacity='0.03'/%3E%3C/svg%3E");
 }
@@ -124,34 +107,6 @@ p, a, label, input, textarea, button {
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.tech-frame {
-  position: relative;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-}
-
-.deco-corner {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 2px solid var(--gold);
-  z-index: 10;
-}
-
-.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
-.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
-.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
-
-.service-card:hover .deco-border {
-  background: rgba(212, 175, 55, 0.08);
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 /* ── Rediseño ─────────────────────────────────────────── */

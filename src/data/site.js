@@ -207,11 +207,11 @@ export const portfolio = {
       result: 'Más presencia en internet: el restaurante ahora aparece con sitio y menú propios.',
       url: 'https://www.galeriadecrepas.com/home',
       linkLabel: 'Ver sitio en vivo',
-      // Captura pendiente: subir a public/obra/galeria-de-crepas.webp (1200×800)
-      // y cambiar imagePending a false.
+      // Captura en public/obra/galeria-de-crepas.webp (1200×800). Con imagePending: true
+      // se muestra el panel déco "Captura próximamente" en su lugar.
       image: '/obra/galeria-de-crepas.webp',
       imageAlt: 'Página de inicio del sitio web de Galería de Crepas con su menú visual',
-      imagePending: true,
+      imagePending: false,
     },
   ],
 }
@@ -267,14 +267,23 @@ export const contact = {
   titleAccent: 'tu negocio',
   lead: 'Cuéntanos qué necesitas. Respondemos en menos de 24 horas hábiles con una primera lectura de tu proyecto, no con un mensaje automático.',
   lines: [
-    { id: 'email', value: 'jonatan-008@outlook.com', href: 'mailto:jonatan-008@outlook.com' },
-    { id: 'location', value: 'Puebla, México · atención remota en todo el país' },
+    { id: 'email', value: studio.email, href: `mailto:${studio.email}` },
+    { id: 'location', value: `${studio.location} — atención remota en todo México` },
+    { id: 'response', value: `Respuesta en ${studio.responseTime.toLowerCase()}` },
   ],
   panelTitle: 'Solicitar auditoría',
-  panelText: 'Responde un formulario breve y en 4 días hábiles recibes la revisión escrita de tu sitio, sin compromiso.',
+  panelText: `Responde un formulario breve y en ${studio.auditDays} días hábiles recibes la revisión escrita de tu sitio, sin compromiso.`,
+  panelSteps: [
+    'Un formulario breve',
+    `Revisión escrita en ${studio.auditDays} días hábiles`,
+    'Sin costo ni obligación de contratar',
+  ],
   privacyNote: 'Al enviar el formulario aceptas nuestra',
   privacyLinkLabel: 'política de privacidad',
   modalTitle: 'Solicitar auditoría gratuita',
+  modalIntro: `Cuéntanos de tu negocio y en ${studio.auditDays} días hábiles te enviamos la revisión a tu correo.`,
+  modalLoading: 'Cargando formulario…',
+  modalFrameTitle: 'Formulario de solicitud de auditoría (Microsoft Forms)',
   modalFallback: 'Abrir el formulario en otra pestaña',
   modalClose: 'Cerrar',
 }
@@ -284,6 +293,101 @@ export const legalLinks = [
   { to: '/privacidad', label: 'Política de privacidad' },
   { to: '/cookies', label: 'Cookies' },
 ]
+
+export const LEGAL_UPDATED = '29 de septiembre de 2026'
+
+// Aviso de cookies (src/components/ComplianceModal.jsx)
+export const consent = {
+  title: 'Cookies y medición',
+  text: 'Con tu permiso usamos Google Analytics para contar visitas y saber qué secciones se leen. No usamos publicidad ni seguimiento de marketing, y si rechazas el sitio funciona igual.',
+  accept: 'Aceptar',
+  reject: 'Rechazar',
+  more: 'Más información',
+  settings: 'Configurar cookies',
+}
+
+// Página /cookies. `{gaSession}` se reemplaza por el nombre real de la cookie
+// de sesión de GA4 (depende de VITE_GA_ID).
+export const cookiePolicy = {
+  eyebrow: 'Legal',
+  title: 'Política de',
+  titleAccent: 'cookies',
+  updated: `Última actualización: ${LEGAL_UPDATED}`,
+  intro: [
+    'Una cookie es un pequeño archivo que un sitio guarda en tu navegador. Este sitio guarda muy poco: la única medición es Google Analytics y solo se activa si la aceptas.',
+    'No usamos cookies de publicidad, de redes sociales ni de seguimiento entre sitios.',
+  ],
+  status: {
+    title: 'Tu decisión',
+    accepted: 'Aceptaste la medición con Google Analytics el {fecha}.',
+    rejected: 'Rechazaste la medición con Google Analytics el {fecha}. No se mide tu visita.',
+    none: 'Aún no has decidido. Mientras no aceptes, no se mide tu visita.',
+    help: 'Puedes cambiar tu decisión cuando quieras; se guarda solo en este navegador.',
+  },
+  tableTitle: 'Qué se guarda y quién lo guarda',
+  columns: { name: 'Nombre', owner: 'Quién', purpose: 'Para qué', duration: 'Duración', when: 'Cuándo' },
+  rows: [
+    {
+      id: 'consent',
+      name: 'cookieConsent',
+      kind: 'Almacenamiento local',
+      owner: 'Khuanany',
+      purpose: 'Recordar si aceptaste o rechazaste la medición.',
+      duration: 'Hasta que borres los datos del sitio en tu navegador.',
+      when: 'Cuando eliges en el aviso.',
+    },
+    {
+      id: 'ga',
+      name: '_ga',
+      kind: 'Cookie',
+      owner: 'Google Analytics',
+      purpose: 'Distinguir visitantes para contar visitas de forma estadística.',
+      duration: '2 años',
+      when: 'Solo si aceptas.',
+    },
+    {
+      id: 'ga-session',
+      name: '{gaSession}',
+      kind: 'Cookie',
+      owner: 'Google Analytics',
+      purpose: 'Mantener el estado de la visita (sesión) para las estadísticas.',
+      duration: '2 años',
+      when: 'Solo si aceptas.',
+    },
+    {
+      id: 'forms',
+      name: 'Microsoft Forms',
+      kind: 'Cookies de terceros',
+      owner: 'Microsoft',
+      purpose: 'Funcionamiento del formulario de solicitud de auditoría.',
+      duration: 'Según la política de Microsoft.',
+      when: 'Solo si abres el formulario.',
+      link: { href: 'https://privacy.microsoft.com/es-mx/privacystatement', label: 'Declaración de privacidad de Microsoft' },
+    },
+    {
+      id: 'cdn',
+      name: 'Google Fonts y Tailwind CSS',
+      kind: 'Sin cookies',
+      owner: 'Google (fonts.googleapis.com) y cdn.tailwindcss.com',
+      purpose: 'Cargar la tipografía y los estilos. Como cualquier servidor, reciben tu dirección IP.',
+      duration: 'No guardan cookies.',
+      when: 'En cada visita.',
+    },
+  ],
+  googleLink: { href: 'https://policies.google.com/technologies/partner-sites?hl=es', label: 'Cómo usa Google la información de los sitios que usan sus servicios' },
+  deleteTitle: 'Cómo borrar las cookies',
+  deleteText: 'Además de rechazar aquí, puedes borrar las cookies y los datos del sitio desde la configuración de tu navegador:',
+  browsers: [
+    { name: 'Google Chrome', href: 'https://support.google.com/chrome/answer/95647?hl=es' },
+    { name: 'Microsoft Edge', href: 'https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09' },
+    { name: 'Mozilla Firefox', href: 'https://support.mozilla.org/es/kb/limpiar-cookies-y-datos-del-sitio-firefox' },
+    { name: 'Safari', href: 'https://support.apple.com/es-mx/guide/safari/sfri11471/mac' },
+  ],
+  moreTitle: 'Más información',
+  moreText: 'Para saber cómo tratamos los datos que nos envías, consulta la',
+  privacyLabel: 'política de privacidad',
+  contactText: 'Si tienes dudas, escríbenos a',
+}
 
 export const footer = {
   description: 'Diseño web en Puebla. Acabado Art Déco y planes accesibles, desde 2024.',
