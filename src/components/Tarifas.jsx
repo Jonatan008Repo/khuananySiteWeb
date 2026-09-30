@@ -118,6 +118,7 @@ export default function Tarifas() {
               ))}
             </ul>
             <p className="fine-print">{pricing.taxNote}</p>
+            <p className="fine-print">{pricing.deliveryNote}</p>
           </div>
 
           <div className="flex flex-col gap-5 border-l-0 lg:border-l border-gold/20 lg:pl-10">

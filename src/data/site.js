@@ -52,7 +52,7 @@ export const cta = {
 // una promoción activa). `value` es el texto de respaldo con el precio normal.
 export const hero = {
   eyebrow: 'Puebla',
-  title: 'Sitios web con acabado de atelier',
+  title: 'Sitios web con acabado profesional',
   titleAccent: 'para negocios que quieren destacar',
   lead: 'Diseñamos, publicamos y mantenemos el sitio de tu negocio. Listo desde 5 días hábiles, con WhatsApp, Google Maps y cambios cada mes según tu plan.',
   facts: [
@@ -68,7 +68,7 @@ export const about = {
   title: 'Khuanany',
   titleAccent: 'en breve',
   paragraphs: [
-    'Khuanany es un atelier de diseño y desarrollo web fundado en 2024 en Puebla, México. Diseñamos, publicamos y mantenemos sitios para negocios que quieren verse bien y que sus clientes los encuentren, con planes mensuales y sin letra pequeña.',
+    'Khuanany es un estudio de diseño y desarrollo web fundado en 2024 en Puebla, México. Diseñamos, publicamos y mantenemos sitios para negocios que quieren verse bien y que sus clientes los encuentren, con planes mensuales.',
     'Cada proyecto lo dirige la misma persona que lo diseña, de la auditoría inicial a la publicación.',
   ],
   factsTitle: 'Ficha del estudio',
@@ -225,7 +225,7 @@ export const faq = {
     {
       id: 'que-es',
       question: '¿Qué es Khuanany?',
-      answer: 'Khuanany es un atelier de diseño y desarrollo web fundado en 2024 en Puebla, México. Creamos, publicamos y mantenemos sitios web para negocios de todo el país, con acabado cuidado y planes mensuales accesibles.',
+      answer: 'Khuanany es un estudio de diseño y desarrollo web fundado en 2024 en Puebla, México. Creamos, publicamos y mantenemos sitios web para negocios de todo el país, con acabado cuidado y planes mensuales accesibles.',
     },
     {
       id: 'costo',
@@ -395,12 +395,21 @@ export const footer = {
   copyright: `© ${new Date().getFullYear()} Khuanany · www.khuanany.com`,
 }
 
+// SEO por ruta. Lo usan src/seo/Seo.jsx (en el navegador) y el plugin de
+// vite.config.js que escribe las metas y el JSON-LD en el HTML estático.
 export const seo = {
+  siteName: 'Khuanany',
+  locale: 'es_MX',
+  themeColor: '#011E2E', // deep-black; <meta name="theme-color"> no admite variables CSS
+  ogImage: '/og-image.png', // 1200×630
+  ogImageAlt: 'Khuanany — diseño web en Puebla para negocios de todo México',
   defaultTitle: `Khuanany | Diseño web en Puebla para negocios, desde ${FROM}`,
-  defaultDescription: `Atelier de diseño web en Puebla. Sitios con acabado Art Déco para negocios de todo México, listos desde 5 días hábiles, con WhatsApp, Google Maps y planes desde ${FROM}.`,
+  defaultDescription: `Estudio de diseño web en Puebla. Sitios con acabado Art Déco para negocios de todo México, listos desde 5 días hábiles, con WhatsApp, Google Maps y planes desde ${FROM}.`,
   routes: {
-    '/terminos': { title: 'Términos y condiciones | Khuanany', description: 'Términos y condiciones de uso del sitio y los servicios de Khuanany, atelier de diseño web en Puebla, México.' },
-    '/privacidad': { title: 'Política de privacidad | Khuanany', description: 'Cómo Khuanany recopila, usa y protege tus datos personales.' },
-    '/cookies': { title: 'Política de cookies | Khuanany', description: 'Qué cookies y datos guarda el sitio de Khuanany, para qué sirven y cómo cambiar tu decisión.' },
+    '/': { title: null, description: null }, // usa los valores por defecto
+    '/terminos': { title: 'Términos y condiciones | Khuanany', description: 'Términos y condiciones de uso del sitio y los servicios de Khuanany, estudio de diseño web en Puebla, México.', breadcrumb: 'Términos y condiciones' },
+    '/privacidad': { title: 'Política de privacidad | Khuanany', description: 'Cómo Khuanany recopila, usa y protege tus datos personales.', breadcrumb: 'Política de privacidad' },
+    '/cookies': { title: 'Política de cookies | Khuanany', description: 'Qué cookies y datos guarda el sitio de Khuanany, para qué sirven y cómo cambiar tu decisión.', breadcrumb: 'Política de cookies' },
   },
+  notFound: { title: 'Página no encontrada | Khuanany', description: 'La página que buscas no existe o cambió de dirección.', noindex: true },
 }

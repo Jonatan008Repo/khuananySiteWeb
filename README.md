@@ -1,4 +1,4 @@
-# KHUANANY — Digital Atelier de Lujo
+# KHUANANY — Estudio de diseño web en Puebla
 
 Sitio web institucional de **Khuanany**, construido con React y Vite. Diseño inspirado en estética Art Déco con paleta racing green y dorado.
 

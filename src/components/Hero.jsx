@@ -97,6 +97,7 @@ export default function Hero() {
               </div>
             ))}
           </dl>
+          <p className="fine-print mt-3 max-w-[580px]">{hero.deliveryNote}</p>
         </div>
 
         <DecoPanel />

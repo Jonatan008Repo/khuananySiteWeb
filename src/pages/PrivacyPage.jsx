@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className={h2}>1. Quiénes somos</h2>
             <p>
-              Khuanany es un atelier de diseño y desarrollo web con sede en {studio.location}. Esta política explica qué datos
+              Khuanany es un estudio de diseño y desarrollo web con sede en {studio.location}. Esta política explica qué datos
               personales tratamos cuando visitas www.khuanany.com o nos solicitas una auditoría, para qué los usamos y cómo
               puedes ejercer tus derechos. Para cualquier asunto de privacidad escríbenos a{' '}
               <a href={`mailto:${studio.email}`} className={link}>{studio.email}</a>.

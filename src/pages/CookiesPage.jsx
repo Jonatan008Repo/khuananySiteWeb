@@ -26,7 +26,7 @@ export default function CookiesPage() {
   const cellLabel = 'before:block md:before:hidden before:text-3xs before:font-semibold before:uppercase before:tracking-label before:text-mist/70 before:mb-1 before:content-[attr(data-label)]'
 
   return (
-    <main className="bg-deep-black px-5 lg:px-16 pt-[calc(theme(spacing.16)+theme(spacing.section))] lg:pt-[calc(theme(spacing.nav)+theme(spacing.section))] pb-section lg:pb-section-lg">
+    <div className="bg-deep-black px-5 lg:px-16 pt-[calc(theme(spacing.16)+theme(spacing.section))] lg:pt-[calc(theme(spacing.nav)+theme(spacing.section))] pb-section lg:pb-section-lg">
       <div className="max-w-4xl mx-auto flex flex-col gap-10 lg:gap-14">
         <header className="flex flex-col gap-4">
           <Eyebrow>{cookiePolicy.eyebrow}</Eyebrow>
@@ -116,6 +116,6 @@ export default function CookiesPage() {
           </p>
         </section>
       </div>
-    </main>
+    </div>
   )
 }
