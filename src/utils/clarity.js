@@ -1,6 +1,6 @@
 import { getConsent, onConsentChange } from './consent.js'
 
-const CLARITY_ID = 'z5fvsb90ry'
+const CLARITY_ID = 'z5g4znhgbl'
 const SCRIPT_SRC = `https://www.clarity.ms/tag/${CLARITY_ID}?ref=bwt`
 const SCRIPT_ID = `clarity-tag-${CLARITY_ID}`
 
