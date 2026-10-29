@@ -299,7 +299,7 @@ export const LEGAL_UPDATED = '29 de septiembre de 2026'
 // Aviso de cookies (src/components/ComplianceModal.jsx)
 export const consent = {
   title: 'Cookies y medición',
-  text: 'Con tu permiso usamos Google Analytics para contar visitas y saber qué secciones se leen. No usamos publicidad ni seguimiento de marketing, y si rechazas el sitio funciona igual.',
+  text: 'Con tu permiso usamos Google Analytics y Microsoft Clarity para contar visitas y entender cómo se usan las secciones. No usamos publicidad ni seguimiento de marketing, y si rechazas el sitio funciona igual.',
   accept: 'Aceptar',
   reject: 'Rechazar',
   more: 'Más información',
@@ -314,13 +314,13 @@ export const cookiePolicy = {
   titleAccent: 'cookies',
   updated: `Última actualización: ${LEGAL_UPDATED}`,
   intro: [
-    'Una cookie es un pequeño archivo que un sitio guarda en tu navegador. Este sitio guarda muy poco: la única medición es Google Analytics y solo se activa si la aceptas.',
+    'Una cookie es un pequeño archivo que un sitio guarda en tu navegador. Este sitio guarda muy poco: la medición usa Google Analytics y Microsoft Clarity, y solo se activa si la aceptas.',
     'No usamos cookies de publicidad, de redes sociales ni de seguimiento entre sitios.',
   ],
   status: {
     title: 'Tu decisión',
-    accepted: 'Aceptaste la medición con Google Analytics el {fecha}.',
-    rejected: 'Rechazaste la medición con Google Analytics el {fecha}. No se mide tu visita.',
+    accepted: 'Aceptaste la medición con Google Analytics y Microsoft Clarity el {fecha}.',
+    rejected: 'Rechazaste la medición con Google Analytics y Microsoft Clarity el {fecha}. No se mide tu visita.',
     none: 'Aún no has decidido. Mientras no aceptes, no se mide tu visita.',
     help: 'Puedes cambiar tu decisión cuando quieras; se guarda solo en este navegador.',
   },
@@ -355,6 +355,26 @@ export const cookiePolicy = {
       when: 'Solo si aceptas.',
     },
     {
+      id: 'clarity-user',
+      name: '_clck',
+      kind: 'Cookie',
+      owner: 'Microsoft Clarity',
+      purpose: 'Guardar un identificador seudónimo para relacionar páginas vistas en el mismo navegador.',
+      duration: 'Según la configuración y la política de Microsoft Clarity.',
+      when: 'Solo si aceptas.',
+      link: { href: 'https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-cookies', label: 'Cookies de Microsoft Clarity' },
+    },
+    {
+      id: 'clarity-session',
+      name: '_clsk',
+      kind: 'Cookie',
+      owner: 'Microsoft Clarity',
+      purpose: 'Conectar varias páginas vistas dentro de una misma sesión de uso.',
+      duration: 'Según la configuración y la política de Microsoft Clarity.',
+      when: 'Solo si aceptas.',
+      link: { href: 'https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-cookies', label: 'Cookies de Microsoft Clarity' },
+    },
+    {
       id: 'forms',
       name: 'Microsoft Forms',
       kind: 'Cookies de terceros',
@@ -374,7 +394,10 @@ export const cookiePolicy = {
       when: 'En cada visita.',
     },
   ],
-  googleLink: { href: 'https://policies.google.com/technologies/partner-sites?hl=es', label: 'Cómo usa Google la información de los sitios que usan sus servicios' },
+  analyticsLinks: [
+    { href: 'https://policies.google.com/technologies/partner-sites?hl=es', label: 'Cómo usa Google la información de los sitios que usan sus servicios' },
+    { href: 'https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-cookies', label: 'Qué cookies usa Microsoft Clarity' },
+  ],
   deleteTitle: 'Cómo borrar las cookies',
   deleteText: 'Además de rechazar aquí, puedes borrar las cookies y los datos del sitio desde la configuración de tu navegador:',
   browsers: [

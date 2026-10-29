@@ -85,11 +85,13 @@ export default function CookiesPage() {
               ))}
             </tbody>
           </table>
-          <p className="text-sm text-mist">
-            <a href={cookiePolicy.googleLink.href} target="_blank" rel="noopener noreferrer" className={textLink}>
-              {cookiePolicy.googleLink.label}<span className="sr-only"> (se abre en otra pestaña)</span>
-            </a>
-          </p>
+          <div className="text-sm text-mist flex flex-col gap-2">
+            {cookiePolicy.analyticsLinks.map((item) => (
+              <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" className={textLink}>
+                {item.label}<span className="sr-only"> (se abre en otra pestaña)</span>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section aria-labelledby="cookies-delete" className="flex flex-col gap-4">

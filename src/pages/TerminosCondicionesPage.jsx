@@ -24,7 +24,7 @@ export default function TerminosCondicionesPage() {
           <section>
             <h2 className="text-2xl font-bold text-gold mb-4">Cookies</h2>
             <p className="mb-4">
-              El <strong>SITIO WEB</strong> no usa cookies de publicidad ni de marketing. La única medición es Google Analytics, que solo se activa si usted la acepta en el aviso de cookies; si la rechaza, el sitio funciona igual.
+              El <strong>SITIO WEB</strong> no usa cookies de publicidad ni de marketing. La medición usa Google Analytics y Microsoft Clarity, y solo se activa si usted la acepta en el aviso de cookies; si la rechaza, el sitio funciona igual.
             </p>
             <p>
               Una cookie es un archivo de texto que un sitio guarda en su navegador. Puede consultar la lista completa y cambiar su decisión en cualquier momento en la{' '}

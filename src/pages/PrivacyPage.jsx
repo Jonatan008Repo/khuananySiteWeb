@@ -45,10 +45,10 @@ export default function PrivacyPage() {
               <div>
                 <h3 className={h3}>Medición de visitas, solo si la aceptas</h3>
                 <p>
-                  Si aceptas en el aviso de cookies, usamos Google Analytics 4 para contar visitas y saber qué secciones se
-                  leen: páginas vistas, tipo de dispositivo y navegador, ciudad o región aproximada y cómo llegaste al sitio.
-                  Desactivamos las señales de Google y la personalización de anuncios. Si rechazas, no se carga Google
-                  Analytics y no se mide tu visita.
+                  Si aceptas en el aviso de cookies, usamos Google Analytics 4 y Microsoft Clarity para contar visitas y
+                  saber qué secciones se leen, con datos como páginas vistas, tipo de dispositivo y navegador, ciudad o
+                  región aproximada y patrones de interacción (clics y desplazamiento). Desactivamos las señales de Google
+                  y la personalización de anuncios. Si rechazas, no se cargan estas herramientas y no se mide tu visita.
                 </p>
               </div>
               <div>
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className={h2}>4. Cookies</h2>
             <p>
-              La única cookie de medición es la de Google Analytics y solo se guarda si la aceptas. En la{' '}
+              Las cookies de medición (Google Analytics y Microsoft Clarity) solo se guardan si las aceptas. En la{' '}
               <Link to="/cookies" className={link}>política de cookies</Link> encontrarás la lista completa, su duración y
               cómo cambiar tu decisión en cualquier momento.
             </p>
@@ -87,6 +87,7 @@ export default function PrivacyPage() {
             <ul className="list-disc list-inside space-y-2 ml-2 mt-3">
               <li>Microsoft, que aloja el formulario de solicitud de auditoría (Microsoft Forms).</li>
               <li>Google, si aceptas la medición (Google Analytics) y para servir la tipografía (Google Fonts).</li>
+              <li>Microsoft, si aceptas la medición (Microsoft Clarity).</li>
               <li>El servicio de alojamiento que publica el sitio.</li>
               <li>Autoridades, únicamente cuando la ley lo exija.</li>
             </ul>
@@ -104,7 +105,8 @@ export default function PrivacyPage() {
             <p>
               Conservamos los datos de tu solicitud mientras dure la relación contigo y, después, solo el tiempo necesario
               para atender obligaciones legales o aclaraciones. Los datos de medición se conservan según la configuración
-              de retención de Google Analytics. Puedes pedir que eliminemos tus datos en cualquier momento.
+              de retención de Google Analytics y las políticas de retención de Microsoft Clarity. Puedes pedir que
+              eliminemos tus datos en cualquier momento.
             </p>
           </section>
 
