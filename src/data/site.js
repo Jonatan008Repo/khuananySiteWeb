@@ -11,7 +11,7 @@ export const formatMXN = (amount) =>
   `$${amount.toLocaleString('es-MX')} MXN`
 
 // Precios base (MXN, sin IVA). Todos los textos del sitio los toman de aquí.
-const SETUP = { esencial: 4050, negocio: 6750, pro: 10800 }
+const SETUP = { esencial: 5050, negocio: 10750, pro: 15800 }
 const MONTHLY = { esencial: 750, negocio: 1350, pro: 2250 }
 const FROM = formatMXN(SETUP.esencial)
 
@@ -188,7 +188,7 @@ export const pricing = {
   extrasTitle: 'Extras',
   extras: [
     { id: 'liberacion', name: 'Liberación del sitio', price: 9000, note: 'Te quedas con el sitio en propiedad y dejas de pagar renta.' },
-    { id: 'urgente', name: 'Cambio urgente fuera del plan', price: 450 },
+    { id: 'urgente', name: 'Cambio urgente fuera del plan', price: 550 },
     { id: 'fotos', name: 'Sesión de fotos del negocio', price: 1200 },
   ],
   growthNote: '¿Necesitas más? Puedes subir de plan cuando quieras o ampliar tu paquete con páginas, cambios o funciones extra. Lo cotizamos a tu medida.',
