@@ -92,7 +92,7 @@ function applyHead(html, path) {
 
 	const ldPattern = /<script\s+type="application\/ld\+json"\s+id="ld-json">[\s\S]*?<\/script>/
 	const ldScript = schema ? `<script type="application/ld+json" id="ld-json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : ''
-	next = ldPattern.test(next) ? next.replace(ldPattern, ldScript) : next
+	next = ldPattern.test(next) ? next.replace(ldPattern, () => ldScript) : next
 
 	return next
 }
