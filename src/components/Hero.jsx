@@ -79,6 +79,9 @@ export default function Hero() {
           <p className="text-[15.5px] lg:text-[19px] leading-copy-snug text-mist max-w-[580px] mb-7 lg:mb-10">
             {hero.lead}
           </p>
+          <p className="text-[12.5px] lg:text-[14px] leading-copy text-mist-light/90 tracking-[0.4px] max-w-[640px] mb-7 lg:mb-10">
+            {hero.manifesto}
+          </p>
 
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-5 w-full sm:w-auto mb-10 lg:mb-[52px]">
             <Button href={auditFormUrl} onClick={openAudit} aria-haspopup="dialog" className="h-btn lg:h-auto lg:py-[19px] px-11 lg:px-8 lg:tracking-label">

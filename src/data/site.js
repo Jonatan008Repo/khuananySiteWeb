@@ -55,6 +55,7 @@ export const hero = {
   title: 'Sitios web con acabado profesional',
   titleAccent: 'para negocios que quieren destacar',
   lead: 'Diseñamos, publicamos y mantenemos el sitio de tu negocio. Listo desde 5 días hábiles, con WhatsApp, Google Maps y cambios cada mes según tu plan.',
+  manifesto: 'En la era de los agentes de IA, tu sitio web ya no es solo una presencia digital: es la puerta de entrada de tu negocio al futuro.',
   facts: [
     { label: 'Desde', value: `${FROM} + IVA`, priceTemplate: '{price} + IVA' },
     { label: 'Entrega', value: 'Desde 5 días hábiles' },
@@ -427,7 +428,7 @@ export const seo = {
   ogImage: '/og-image.png', // 1200×630
   ogImageAlt: 'Khuanany — diseño web en Puebla para negocios de todo México',
   defaultTitle: `Khuanany | Diseño web en Puebla para negocios, desde ${FROM}`,
-  defaultDescription: `Estudio de diseño web en Puebla. Sitios con acabado Art Déco para negocios de todo México, listos desde 5 días hábiles, con WhatsApp, Google Maps y planes desde ${FROM}.`,
+  defaultDescription: `Estudio de diseño web en Puebla. Sitios para negocios de todo México, listos desde 5 días hábiles y preparados para SEO, AEO y visibilidad en motores de IA, desde ${FROM}.`,
   routes: {
     '/': { title: null, description: null }, // usa los valores por defecto
     '/terminos': { title: 'Términos y condiciones | Khuanany', description: 'Términos y condiciones de uso del sitio y los servicios de Khuanany, estudio de diseño web en Puebla, México.', breadcrumb: 'Términos y condiciones' },
