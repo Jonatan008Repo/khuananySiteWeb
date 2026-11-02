@@ -1,7 +1,8 @@
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { about, contact, faq, hero, seo, services, studio } from '../src/data/site.js'
+import { about, contact, faq, formatMXN, hero, pricing, seo, services, studio } from '../src/data/site.js'
 import { metaForPath, schemaForPath } from '../src/seo/schemas.js'
+import { getFaqAnswer } from '../src/utils/faq.js'
 import { writeSitemap } from './generate-sitemap.mjs'
 
 const docsDir = resolve('docs')
@@ -17,13 +18,13 @@ function getStaticContent(path) {
 			.join('')
 		const faqItems = faq.items
 			.map((item) => {
-				const answer = item.answer ?? 'Consulta esta respuesta directamente en la sección de preguntas frecuentes del sitio.'
+				const answer = getFaqAnswer(item, { pricing, formatPrice: formatMXN })
 				return `<li><strong>${escapeHtml(item.question)}</strong> ${escapeHtml(answer)}</li>`
 			})
 			.join('')
 
 		return [
-			'<main id="seo-static-content" aria-label="Contenido principal" style="max-width:960px;margin:0 auto;padding:24px 16px;color:#0d2430;font-family:Montserrat,Arial,sans-serif;line-height:1.65">',
+			'<main id="seo-static-content" aria-label="Contenido principal" style="max-width:960px;margin:0 auto;padding:24px 16px;color:#0d2430;background:#fff;font-family:Montserrat,Arial,sans-serif;line-height:1.65">',
 			`<h1 style="font-family:'Playfair Display','Times New Roman',serif;line-height:1.2">${escapeHtml(hero.title)} ${escapeHtml(hero.titleAccent)}</h1>`,
 			`<p>${escapeHtml(hero.lead)}</p>`,
 			`<p><strong>${escapeHtml(hero.manifesto)}</strong></p>`,
@@ -43,7 +44,7 @@ function getStaticContent(path) {
 
 	const route = seo.routes[path]
 	return [
-		'<main id="seo-static-content" aria-label="Contenido legal" style="max-width:960px;margin:0 auto;padding:24px 16px;color:#0d2430;font-family:Montserrat,Arial,sans-serif;line-height:1.65">',
+		'<main id="seo-static-content" aria-label="Contenido legal" style="max-width:960px;margin:0 auto;padding:24px 16px;color:#0d2430;background:#fff;font-family:Montserrat,Arial,sans-serif;line-height:1.65">',
 		`<h1 style="font-family:'Playfair Display','Times New Roman',serif;line-height:1.2">${escapeHtml(route.breadcrumb)}</h1>`,
 		`<p>${escapeHtml(route.description)}</p>`,
 		'<p>Esta es la versión base para rastreadores. El contenido completo se muestra al cargar la aplicación.</p>',

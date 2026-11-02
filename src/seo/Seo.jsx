@@ -23,7 +23,8 @@ export default function Seo() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const meta = metaForPath(pathname)
+    const path = pathname.replace(/\/+$/, '') || '/'
+    const meta = metaForPath(path)
     document.title = meta.title
     setMeta('description', meta.description)
     setMeta('og:title', meta.title, 'property')
@@ -42,7 +43,7 @@ export default function Seo() {
     if (meta.noindex) setMeta('robots', 'noindex, follow')
     else remove('meta[name="robots"]')
 
-    const schema = schemaForPath(pathname)
+    const schema = schemaForPath(path)
     if (schema) {
       const script = upsert('script#ld-json', 'script', { id: 'ld-json', type: 'application/ld+json' })
       script.textContent = JSON.stringify(schema)
